@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <p *ngIf="favoriteType == 1">Favorite Playlists</p>
+      <p *ngIf="favoriteType == 2">Favorite Songs</p>
+      <p *ngIf="favoriteType == 3">Favorite Albums</p>
+      <p *ngIf="favoriteType == 4">Favorite Artists</p>
+    </ion-title>
+
+    <ion-buttons left>
+      <button ion-button icon-only (tap)="dismiss()">
+        <ion-icon class="navbar-button" name="ios-arrow-back-outline" item-end></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-row *ngIf="!loaded" align-items-center>
+    <ion-col text-center>
+      <br>
+      <ion-spinner color="spotifyPrimary"></ion-spinner>
+    </ion-col>
+  </ion-row>
+
+  <ion-list *ngIf="loaded">
+    <ion-item *ngFor="let favoriteItem of favoriteItems" no-lines>
+      <ion-avatar item-start (click)="handleFavoriteClick(favoriteItem)">
+        <img src="{{ favoriteItem.picture }}">
+      </ion-avatar>
+
+      <div (click)="handleFavoriteClick(favoriteItem)">
+        <p [class.isPlaying]="favoriteItem.isPlaying" class="favorite-item-name">{{ favoriteItem.name }}</p>
+        <p [class.isPlaying]="favoriteItem.isPlaying" *ngIf="favoriteType == 2 || favoriteType == 3" class="favorite-item-artist">{{ favoriteItem.artistName }}</p>
+      </div>
+
+      <button ion-button clear item-end (click)="favoriteActionSheet(favoriteItem)">
+        <ion-icon name="md-more"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <footer-player></footer-player>
+</ion-footer>

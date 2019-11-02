@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-navbar>
+    <ion-row>
+      <ion-col col-10>
+        <ion-searchbar id="searchInput" [(ngModel)]="searchValue" placeholder="Search" (ionClear)="onClear($event)"></ion-searchbar>
+      </ion-col>
+
+      <ion-col col-2 text-center>
+        <button ion-button clear item-end>
+          <ion-icon class="barcode-camera" name="ios-camera-outline"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row *ngIf="!loaded" align-items-center>
+    <ion-col text-center>
+      <br>
+      <ion-spinner color="spotifyPrimary"></ion-spinner>
+    </ion-col>
+  </ion-row>
+
+  <ion-grid *ngIf="isSearching">
+    <ion-col text-center>
+      <ion-spinner *ngIf="!searchDone" color="spotifyPrimary"></ion-spinner>
+      <br>
+      <p *ngIf="searchDone && foundSongs.length <= 0 && foundArtists.length <= 0 && foundAlbums.length <= 0" class="no-results">No results</p>
+    </ion-col>
+
+    <ion-grid *ngIf="foundSongs.length > 0">
+      <div class="item-title">Songs</div>
+
+      <ion-list>
+        <ion-item *ngFor="let song of foundSongs; let i = index" no-lines class="search-result-item">
+          <ion-avatar item-start (click)="playSong(song, i)">
+            <img src="{{ song.albumPicture }}">
+          </ion-avatar>
+
+          <div (click)="playSong(song, i)">
+            <p [class.isPlaying]="song.isPlaying" class="search-result-text">{{ song.name }}</p>
+            <p [class.isPlaying]="song.isPlaying" class="search-result-subtext">{{ song.artistName }}</p>
+          </div>
+
+          <button ion-button clear item-end (click)="songActionSheet(song)">
+            <ion-icon name="md-more"></ion-icon>
+          </button>
+        </ion-item>
+      </ion-list>
+    </ion-grid>
+
+    <ion-grid *ngIf="foundArtists.length > 0">
+      <div class="item-title">Artists</div>
+
+      <ion-list>
+        <ion-item *ngFor="let artist of foundArtists; let i = index" no-lines class="search-result-item">
+          <ion-avatar item-start (click)="selectArtist(artist)">
+            <img src="{{ artist.picture }}">
+          </ion-avatar>
+
+          <div (click)="selectArtist(artist)">
+            <p class="search-result-text">{{ artist.name }}</p>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-grid>
+
+    <ion-grid *ngIf="foundAlbums.length > 0">
+      <div class="item-title">Albums</div>
+
+      <ion-list>
+        <ion-item *ngFor="let album of foundAlbums; let i = index" no-lines class="search-result-item">
+          <ion-avatar item-start (click)="selectAlbum(album)">
+            <img src="{{ album.picture }}">
+          </ion-avatar>
+
+          <div (click)="selectAlbum(album)">
+            <p class="search-result-text">{{ album.name }}</p>
+          </div>
+
+          <button ion-button clear item-end (click)="albumActionSheet(album)">
+            <ion-icon name="md-more"></ion-icon>
+          </button>
+        </ion-item>
+      </ion-list>
+    </ion-grid>
+  </ion-grid>
+
+  <ion-grid *ngIf="!isSearching">
+    <div class="item-title">Recent Searches</div>
+
+    <ion-col *ngIf="recentSearches.length <= 0" text-center>
+      <p class="no-results">No recent searches</p>
+    </ion-col>
+
+    <ion-list *ngIf="recentSearches.length > 0">
+      <ion-item no-lines class="search-item" *ngFor="let searchItem of recentSearches">
+        <ion-avatar item-start (click)="handleSearchItemClick(searchItem)">
+          <img src="{{ searchItem.picture }}">
+        </ion-avatar>
+
+        <div (click)="handleSearchItemClick(searchItem)">
+          <p [class.isPlaying]="searchItem.isPlaying" class="search-item-text">{{ searchItem.name }}</p>
+          <p [class.isPlaying]="searchItem.isPlaying" class="search-item-sub-text">{{ searchItem.description }}</p>
+        </div>
+
+        <button class="clear-search-item-button" ion-button clear item-end (click)="removeFromRecentSearches(searchItem)">
+          <ion-icon name="md-close"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-list>
+
+    <div class="clear-search-results" *ngIf="recentSearches.length > 0" (click)="clearRecentSearches()">Clear recent searches</div>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <footer-player></footer-player>
+</ion-footer>

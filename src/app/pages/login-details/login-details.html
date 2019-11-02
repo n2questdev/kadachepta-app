@@ -1,0 +1,45 @@
+<ion-header no-border>
+  <ion-navbar transparent>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="no-scroll" no-bounce fullscreen padding>
+  <ion-row align-items-center>
+    <ion-col text-center>
+      <p class="title" *ngIf="isLogin">Log In</p>
+      <p class="title" *ngIf="!isLogin">Sign Up</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row align-items-center>
+    <ion-col text-center>
+      <ion-list>
+        <ion-item>
+          <ion-label color="spotifyLightGrey" stacked>
+            <ion-icon color="spotifyPrimary" name="mail"></ion-icon>
+            {{'email'}}
+          </ion-label>
+
+          <ion-input *ngIf="isLogin" type="text" [(ngModel)]="loginData.email"></ion-input>
+          <ion-input *ngIf="!isLogin" type="text" [(ngModel)]="registerData.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="spotifyLightGrey" stacked>
+            <ion-icon color="spotifyPrimary" name="lock"></ion-icon> {{'password'}}
+          </ion-label>
+
+          <ion-input *ngIf="isLogin" type="password" [(ngModel)]="loginData.password"></ion-input>
+          <ion-input *ngIf="!isLogin" type="password" [(ngModel)]="registerData.password"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
+  <ion-row align-items-center>
+    <ion-col text-center>
+      <button *ngIf="isLogin" class="action-button" ion-button round color="textColor" (click)="signIn()">Log in</button>
+      <button *ngIf="!isLogin" class="action-button" ion-button round color="textColor" (click)="signUp()">Sign up</button>
+    </ion-col>
+  </ion-row>
+</ion-content>

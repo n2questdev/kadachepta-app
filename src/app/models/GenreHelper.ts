@@ -1,0 +1,43 @@
+import { Genre } from './Genre';
+
+export class GenreHelper {
+    static genres: Genre[] = [
+        new Genre('Summer', 'assets/imgs/moods & genres/summer.png'),
+        new Genre('Pop', 'assets/imgs/moods & genres/pop.png'),
+        new Genre('Mood', 'assets/imgs/moods & genres/mood.png'),
+        new Genre('Party', 'assets/imgs/moods & genres/party.png'),
+        new Genre('Hip-Hop', 'assets/imgs/moods & genres/hip-hop.png'),
+        new Genre('Chill', 'assets/imgs/moods & genres/chill.png'),
+        new Genre('Decades', 'assets/imgs/moods & genres/decades.png'),
+        new Genre('Electronic Dance', 'assets/imgs/moods & genres/electronic-dance.png'),
+        new Genre('R & B', 'assets/imgs/moods & genres/rnb.png'),
+        new Genre('Indie', 'assets/imgs/moods & genres/indie.png'),
+        new Genre('Workout', 'assets/imgs/moods & genres/workout.png'),
+        new Genre('Rock', 'assets/imgs/moods & genres/rock.png'),
+        new Genre('Pride', 'assets/imgs/moods & genres/pride.png'),
+        new Genre('Focus', 'assets/imgs/moods & genres/focus.png'),
+        new Genre('Sleep', 'assets/imgs/moods & genres/sleep.png'),
+        new Genre('Country', 'assets/imgs/moods & genres/country.png'),
+        new Genre('Folk Americana', 'assets/imgs/moods & genres/folk-americana.png'),
+        new Genre('Romance', 'assets/imgs/moods & genres/romance.png'),
+        new Genre('Trending', 'assets/imgs/moods & genres/trending.png'),
+        new Genre('Gaming', 'assets/imgs/moods & genres/gaming.png'),
+        new Genre('Jazz', 'assets/imgs/moods & genres/jazz.png'),
+        new Genre('Comedy', 'assets/imgs/moods & genres/comedy.png'),
+        new Genre('Soul', 'assets/imgs/moods & genres/soul.png'),
+        new Genre('Classical', 'assets/imgs/moods & genres/classical.png'),
+        new Genre('Kids', 'assets/imgs/moods & genres/kids.png'),
+        new Genre('Travel', 'assets/imgs/moods & genres/travel.png'),
+        new Genre('K-Pop', 'assets/imgs/moods & genres/k-pop.png'),
+        new Genre('Reggae', 'assets/imgs/moods & genres/reggae.png'),
+        new Genre('Metal', 'assets/imgs/moods & genres/metal.png'),
+        new Genre('Punk', 'assets/imgs/moods & genres/punk.png'),
+        new Genre('Blues', 'assets/imgs/moods & genres/blues.png'),
+        new Genre('Fresh Finds', 'assets/imgs/moods & genres/fresh-finds.png'),
+        new Genre('Running', 'assets/imgs/moods & genres/running.png'),
+        new Genre('Word', 'assets/imgs/moods & genres/word.png'),
+        new Genre('Dinner', 'assets/imgs/moods & genres/dinner.png'),
+        new Genre('Latin', 'assets/imgs/moods & genres/latin.png'),
+        new Genre('Funk', 'assets/imgs/moods & genres/funk.png')
+      ];
+}

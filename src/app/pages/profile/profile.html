@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (tap)="dismiss()">
+        <ion-icon class="navbar-button" name="ios-arrow-back-outline" item-end></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button icon-only>
+        <ion-icon class="navbar-button" name="md-more" item-end></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-row>
+    <ion-col class="profile-details" text-center>
+      <img *ngIf="user && user.photoURL" src="{{user ? user.photoURL : ''}}">
+      <img *ngIf="user && !user.photoURL" src="assets/default-user.png">
+
+      <p>{{user ? user.displayName : ''}}</p>
+
+      <button ion-button round outline small>FIND FRIENDS</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col text-center>
+      <p class="number">15</p>
+      <p class="number-description">PLAYLISTS</p>
+    </ion-col>
+
+    <ion-col text-center>
+      <p class="number">5422</p>
+      <p class="number-description">FOLLOWERS</p>
+    </ion-col>
+
+    <ion-col text-center>
+      <p class="number">987</p>
+      <p class="number-description">FOLLOWING</p>
+    </ion-col>
+  </ion-row>
+
+  <br>
+  <br>
+
+  <ion-row *ngIf="!loadedSongs" align-items-center>
+    <ion-col text-center>
+      <br>
+      <ion-spinner color="spotifyPrimary"></ion-spinner>
+    </ion-col>
+  </ion-row>
+
+  <div *ngIf="loadedSongs" class="item-title">Recently Played</div>
+
+  <ion-list id="recently-played-list" *ngIf="loadedSongs && recentlyPlayedSongs.length > 0">
+    <ion-item *ngFor="let recentlyPlayedSong of recentlyPlayedSongs; let i = index" no-lines class="recently-played-item">
+      <ion-avatar item-start (click)="playRecentSong(i)">
+        <img src="{{recentlyPlayedSong.albumPicture}}">
+      </ion-avatar>
+
+      <div (click)="playRecentSong(i)">
+        <p [class.isPlaying]="recentlyPlayedSong.isPlaying" class="item-text">{{recentlyPlayedSong.name}}</p>
+        <p [class.isPlaying]="recentlyPlayedSong.isPlaying" class="item-sub-text">{{recentlyPlayedSong.artistName}}</p>
+      </div>
+
+      <button class="recently-played-item-button-options" ion-button clear item-end (click)="songActionSheet(recentlyPlayedSong)">
+        <ion-icon name="md-more"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+
+  <ion-row>
+    <ion-col text-center>
+      <button class="shuffle-play" ion-button color="spotifyPrimary" (click)="signOut()" round>LOG OUT</button>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<ion-footer>
+  <footer-player></footer-player>
+</ion-footer>

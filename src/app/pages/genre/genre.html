@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>{{ genre.name }}</ion-title>
+  
+      <ion-buttons left>
+        <button ion-button icon-only (tap)="dismiss()">
+          <ion-icon class="navbar-button" name="ios-arrow-back-outline" item-end></ion-icon>
+        </button>
+      </ion-buttons>
+  
+      <ion-buttons right>
+        <button ion-button icon-only>
+          <ion-icon class="navbar-button" name="md-more" item-end></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content fullscreen>
+    <ion-row>
+      <ion-col text-center>
+        <img class="genre-image" src="{{ genre.picture }}" />
+        <p class="genre-name">{{ genre.name }}</p>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col text-center>
+        <button class="shuffle-play" ion-button color="spotifyPrimary" round>SHUFFLE PLAY</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-item no-lines>
+      <ion-label>Download</ion-label>
+      <ion-toggle checked="false" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-row *ngIf="!loadedSongs" align-items-center>
+      <ion-col text-center>
+        <br>
+        <ion-spinner color="spotifyPrimary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="loadedSongs && genreSongs.length <= 0">
+      <ion-col text-center>
+        <img class="demo-image" src="assets/icon.png">
+        <p class="demo-message">There are no songs yet in this genre/mood.</p>
+        <p class="demo-sub-message">Use the Kadachepta Admin to add your own songs here!</p>
+      </ion-col>
+    </ion-row>
+  
+    <ion-list *ngIf="loadedSongs">
+      <ion-item *ngFor="let song of genreSongs; let i = index" no-lines>
+        <ion-avatar item-start (click)="playSong(i)">
+          <img src="{{ song.albumPicture }}">
+        </ion-avatar>
+  
+        <div (click)="playSong(i)">
+          <p [class.isPlaying]="song.isPlaying" class="genre-song-name">{{ song.name }}</p>
+          <p [class.isPlaying]="song.isPlaying" class="genre-song-artist">{{ song.artistName }}</p>
+        </div>
+        
+        <button ion-button clear item-end (click)="songActionSheet(song)">
+          <ion-icon name="md-more"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
+  <ion-footer>
+    <footer-player></footer-player>
+  </ion-footer>

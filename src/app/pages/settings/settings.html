@@ -1,0 +1,288 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+
+    <ion-buttons left>
+        <button ion-button icon-only (tap)="dismiss()">
+          <ion-icon class="navbar-button" name="ios-arrow-back-outline" item-end></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list nolines>
+    <ion-list-header>
+      Playback
+    </ion-list-header>
+
+    <ion-item nolines>
+      <ion-label>Offline mode</ion-label>
+      <ion-toggle checked="false" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>When you're offline, you'll only be able</p>
+      <p>to play the music and podcasts you've</p>
+      <p>downloaded</p>
+    </ion-item>
+
+    <ion-item nolines style="margin-top: 20px;">
+      <h2>Crossfade</h2>
+      <p>Allows you to crossfade between songs</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-range min="0" max="12" step="1" snaps="true" pin="true" color="spotifyPrimary">
+        <p range-left>Off</p>
+        <p range-right>12 s</p>
+      </ion-range>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Gapless</ion-label>
+      <ion-toggle checked="false" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Allows gapless playback</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Show unplayable songs</ion-label>
+      <ion-toggle checked="false" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Show songs that are unplayable</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Normalize volume</ion-label>
+      <ion-toggle checked="true" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Set the same volume level for all tracks</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Device Broadcast Status</ion-label>
+      <ion-toggle checked="false" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Allow other apps on your device to see what</p>
+      <p>you are listening to</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Autoplay</ion-label>
+      <ion-toggle checked="true" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Keep on listening to similar tracks when your</p>
+      <p>music ends</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Behind the Lyrics</ion-label>
+      <ion-toggle checked="true" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Automatically display Behind the Lyrics</p>
+      <p>content for the current track when available</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Stranger Things mode</ion-label>
+      <ion-toggle checked="true" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Turn Stranger Things mode on/off</p>
+    </ion-item>
+
+
+    <ion-list-header style="margin-top: 20px;">
+      Devices
+    </ion-list-header>
+
+    <ion-item nolines>
+      <ion-label>Connect to a device</ion-label>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Listen to and control Kadachepta on your devices.</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Show local devices only</ion-label>
+      <ion-toggle checked="false" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Only show devices on your local WiFi or</p>
+      <p>ethernet in the devices menu</p>
+    </ion-item>
+
+
+    <ion-list-header style="margin-top: 20px;">
+      Social
+    </ion-list-header>
+
+    <ion-item nolines>
+      <ion-label>Private Session</ion-label>
+      <ion-toggle checked="false" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Choose a Private Session if you don't want to</p>
+      <p>share what you're listening to. Each Session</p>
+      <p>lasts until you've been inactive for 6 hours.</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Last.fm Scrobbling</ion-label>
+      <ion-toggle checked="false" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Scrobble when I listen to on my Last.fm</p>
+      <p>account.</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Waze navigation</ion-label>
+      <ion-toggle checked="true" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Enable to Waze integration</p>
+    </ion-item>
+
+
+    <ion-list-header style="margin-top: 20px;">
+      Music Quality
+    </ion-list-header>
+
+    <ion-item nolines>
+      <ion-label>Streaming</ion-label>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Higher quality uses more data</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-select>
+        <ion-option selected value="automatic">Automatic Quality</ion-option>
+        <ion-option value="normal">Normal Quality</ion-option>
+        <ion-option value="high">High Quality</ion-option>
+        <ion-option value="extreme">Extreme Quality</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Download</ion-label>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Higher quality uses more disk space</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-select>
+        <ion-option selected value="normal">Normal Quality</ion-option>
+        <ion-option value="high">High Quality</ion-option>
+        <ion-option value="extreme">Extreme Quality</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Download using cellular</ion-label>
+      <ion-toggle checked="false" color="spotifyPrimary"></ion-toggle>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Recomment Setting: Off</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Equalizer</ion-label>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Open the equalizer control panel.</p>
+    </ion-item>
+
+
+    <ion-list-header style="margin-top: 20px;">
+      Notifications
+    </ion-list-header>
+
+    <ion-item nolines>
+      <ion-label>Notifications</ion-label>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Choose which notifications to receive.</p>
+    </ion-item>
+
+
+    <ion-list-header style="margin-top: 20px;">
+      About
+    </ion-list-header>
+
+    <ion-item nolines>
+      <ion-label>Third Party Software</ion-label>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Sweet software that helped us.</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Terms and Conditions</ion-label>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>All the stuff you need to know.</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Privacy Policy</ion-label>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Important for both of us.</p>
+    </ion-item>
+
+    <ion-item nolines>
+      <ion-label>Support</ion-label>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Get help from us and the community.</p>
+    </ion-item>
+
+
+    <ion-list-header style="margin-top: 20px;">
+      About
+    </ion-list-header>
+
+    <ion-item nolines>
+      <ion-label>Delete cache and saved data</ion-label>
+    </ion-item>
+
+    <ion-item nolines>
+      <p>Get rid of everything but the app itself.</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <footer-player></footer-player>
+</ion-footer>

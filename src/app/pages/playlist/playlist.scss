@@ -1,0 +1,65 @@
+page-playlist {
+  .content {
+    background-color: map_get($colors, spotifyBlack);
+
+    .playlist-image {
+      width: 150px;
+      margin: auto;
+      display: block;
+    }
+
+    .playlist-name {
+      text-align: center;
+      font-size: 30px;
+      color: white;
+      margin: 0px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    ion-item {
+      background-color: map_get($colors, spotifyBlack);
+
+      ion-label {
+        font-size: 16px;
+        color: white;
+      }
+
+      .playlist-song-name {
+        background-color: map_get($colors, spotifyBlack);
+        color: white;
+        font-size: 16px;
+        margin-left: 10px;
+      }
+
+      .playlist-song-artist {
+        background-color: map_get($colors, spotifyBlack);
+        color: map_get($colors, spotifyVeryLightGrey);
+        font-size: 12px;
+        margin-left: 10px;
+      }
+
+      .playlist-song-name.isPlaying {
+        background-color: map_get($colors, spotifyBlack);
+        color: map_get($colors, spotifyPrimary);
+        font-size: 16px;
+        margin-left: 10px;
+      }
+  
+      .playlist-song-artist.isPlaying {
+        background-color: map_get($colors, spotifyBlack);
+        color: map_get($colors, spotifyPrimary);
+        font-size: 12px;
+        margin-left: 10px;
+      }
+
+      button {
+        color: map_get($colors, spotifyVeryLightGrey);
+
+        ion-icon {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}

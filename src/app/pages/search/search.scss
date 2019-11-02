@@ -1,0 +1,115 @@
+page-search {
+  .searchbar-md .searchbar-input,
+  .searchbar-ios .searchbar-input {
+    background-color: map_get($colors, spotifyDarkGrey);
+    color: white;
+  }
+
+  .barcode-camera {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .content {
+    background-color: map_get($colors, spotifyBlack);
+
+    ion-note {
+      font-size: 12px;
+      align-self: flex-start;
+      margin-top: 14px;
+    }
+
+    .search-item {
+      background-color: map_get($colors, spotifyBlack);
+    }
+
+    .search-item-icon {
+      background-color: map_get($colors, spotifyBlack);
+      color: map_get($colors, spotifyVeryLightGrey);
+    }
+
+    .search-item-text {
+      background-color: map_get($colors, spotifyBlack);
+      color: white;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+
+    .search-item-sub-text {
+      background-color: map_get($colors, spotifyBlack);
+      color: map_get($colors, spotifyVeryLightGrey);
+      font-size: 12px;
+      margin-left: 10px;
+    }
+
+    .search-item-text.isPlaying {
+      background-color: map_get($colors, spotifyBlack);
+      color: map_get($colors, spotifyPrimary);
+      font-size: 16px;
+      margin-left: 10px;
+    }
+
+    .search-item-sub-text.isPlaying {
+      background-color: map_get($colors, spotifyBlack);
+      color: map_get($colors, spotifyPrimary);
+      font-size: 12px;
+      margin-left: 10px;
+    }
+
+    .clear-search-item-button {
+      color: map_get($colors, spotifyVeryLightGrey);
+    }
+
+    .clear-search-results {
+      color: map_get($colors, spotifyVeryLightGrey);
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .no-results {
+      color: map_get($colors, spotifyVeryLightGrey);
+      font-size: 16px;
+    }
+
+    .search-result-item {
+      background-color: map_get($colors, spotifyBlack);
+
+      .search-result-text {
+        background-color: map_get($colors, spotifyBlack);
+        color: white;
+        font-size: 16px;
+        margin-left: 10px;
+      }
+
+      .search-result-subtext {
+        background-color: map_get($colors, spotifyBlack);
+        color: map_get($colors, spotifyVeryLightGrey);
+        font-size: 12px;
+        margin-left: 10px;
+      }
+
+      .search-result-text.isPlaying {
+        background-color: map_get($colors, spotifyBlack);
+        color: map_get($colors, spotifyPrimary);
+        font-size: 16px;
+        margin-left: 10px;
+      }
+  
+      .search-result-subtext.isPlaying {
+        background-color: map_get($colors, spotifyBlack);
+        color: map_get($colors, spotifyPrimary);
+        font-size: 12px;
+        margin-left: 10px;
+      }
+
+      button {
+        color: map_get($colors, spotifyVeryLightGrey);
+
+        ion-icon {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}

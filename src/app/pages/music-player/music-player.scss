@@ -1,0 +1,166 @@
+page-music-player {
+  .title {
+    color: map_get($colors, spotifyVeryLightGrey);
+    font-size: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+
+  .sub-title {
+    color: map_get($colors, spotifyVeryLightGrey);
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    margin: 0px;
+  }
+
+  .content {
+    background-color: map_get($colors, spotifyBlack);
+
+    .half-screen {
+      width: 100%;
+      height: 50%;
+
+      .album-art {
+        height: 90% !important;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .song-details {
+      width: 100%;
+      height: 15%;
+
+      .side-button {
+        height: 100%;
+        justify-content: center;
+        color: white;
+
+        ion-icon {
+          font-size: 30px;
+        }
+      }
+
+      .liked {
+        color: map_get($colors, spotifyPrimary);
+      }
+
+      .song-artist-row {
+        height: 50%;
+        vertical-align: bottom;
+        justify-content: center;
+        display: flex !important;
+        align-content: center !important;
+        align-items: center !important;
+
+        .song {
+          font-size: 16px;
+          color: white;
+        }
+
+        .artist {
+          font-size: 16px;
+          color: map_get($colors, spotifyVeryLightGrey);
+        }
+      }
+    }
+
+    .music-track {
+      width: 100%;
+      height: 15%;
+
+      audio-track-progress-bar {
+        width: 100%;
+
+        time {
+          color: white;
+          font-size: 12px;
+        }
+
+        /* Special styling for WebKit/Blink */
+        input[type="range"]::-webkit-slider-thumb {
+          background: map_get($colors, spotifyPrimary);
+          height: 15px;
+          width: 15px;
+          margin-top: -6px;
+        }
+
+        /* All the same stuff for Firefox */
+        input[type="range"]::-moz-range-thumb {
+          background: map_get($colors, spotifyPrimary);
+          height: 15px;
+          width: 15px;
+          margin-top: -6px;
+        }
+
+        /* All the same stuff for IE */
+        input[type="range"]::-ms-thumb {
+          background: map_get($colors, spotifyPrimary);
+          height: 15px;
+          width: 15px;
+          margin-top: -6px;
+        }
+      }
+    }
+
+    .song-controls {
+      width: 100%;
+      height: 15%;
+
+      audio-track-play {
+        button {
+          color: map_get($colors, spotifyPrimary);
+
+          i {
+            font-size: 42px;
+          }
+        }
+      }
+
+      button {
+        color: white;
+      }
+    }
+
+    .devices {
+      width: 100%;
+      height: 5%;
+
+      button {
+        text-align: center;
+        color: white;
+
+        p {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .fa.fa-random.highlighted {
+      color: map_get($colors, spotifyPrimary);
+    }
+
+    .fa.fa-undo.highlighted {
+      color: map_get($colors, spotifyPrimary);
+    }
+
+    .hidden {
+      visibility: hidden;
+    }
+
+    .dot {
+      height: 5px;
+      width: 5px;
+      background-color: map_get($colors, spotifyPrimary);
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Your library</ion-title>
+
+    <ion-buttons left>
+      <button ion-button icon-only (click)="goToProfile()">
+        <ion-item class="avatar-navbar">
+          <ion-avatar item-left>
+            <img *ngIf="userPicture" src="{{userPicture}}">
+            <img *ngIf="!userPicture" src="assets/default-user.png">
+          </ion-avatar>
+        </ion-item>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button icon-only (tap)="goToSettings()">
+        <ion-icon name="ios-settings-outline" item-end></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list id="library-list">
+    <ion-item no-lines (click)="goToFavouritePlaylists()">
+      <ion-icon name="ios-musical-notes-outline" item-start></ion-icon>
+      <p>Playlists</p>
+    </ion-item>
+
+    <ion-item no-lines (click)="goToFavouriteSongs()">
+      <ion-icon name="ios-musical-note-outline" item-start></ion-icon>
+      <p>Songs</p>
+    </ion-item>
+
+    <ion-item no-lines (click)="goToFavouriteAlbums()">
+      <ion-icon name="md-disc" item-start></ion-icon>
+      <p>Albums</p>
+    </ion-item>
+
+    <ion-item no-lines (click)="goToFavouriteArtists()">
+      <ion-icon name="ios-person-outline" item-start></ion-icon>
+      <p>Artists</p>
+    </ion-item>
+  </ion-list>
+
+  <div class="item-title">Recently Played</div>
+
+  <ion-row>
+    <ion-col text-center>
+      <ion-spinner *ngIf="!loaded" color="spotifyPrimary"></ion-spinner>
+      <br *ngIf="!loaded">
+      <p class="no-results" *ngIf="recentlyPlayedSongs.length <= 0">No recently played</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-list id="recently-played-list" *ngIf="recentlyPlayedSongs.length > 0">
+    <ion-item *ngFor="let recentlyPlayedSong of recentlyPlayedSongs; let i = index" no-lines class="recently-played-item">
+      <ion-avatar item-start (click)="playRecentSong(i)">
+        <img src="{{recentlyPlayedSong.albumPicture}}">
+      </ion-avatar>
+
+      <div (click)="playRecentSong(i)">
+        <p [class.isPlaying]="recentlyPlayedSong.isPlaying" class="item-text">{{recentlyPlayedSong.name}}</p>
+        <p [class.isPlaying]="recentlyPlayedSong.isPlaying" class="item-sub-text">{{recentlyPlayedSong.artistName}}</p>
+      </div>
+
+      <button class="recently-played-item-button-options" ion-button clear item-end (click)="songActionSheet(recentlyPlayedSong)">
+        <ion-icon name="md-more"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <footer-player></footer-player>
+</ion-footer>

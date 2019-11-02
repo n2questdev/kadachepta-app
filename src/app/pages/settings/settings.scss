@@ -1,0 +1,47 @@
+page-settings {
+  .list-header-md {
+    border-top: 0px;
+  }
+
+  .list-header-ios {
+    border-bottom: 0px;
+  }
+
+  .list-md .item-block .item-inner,
+  .item-ios.item-block .item-inner {
+    border-bottom: 0px;
+  }
+
+  .label-md {
+    margin: 0px;
+  }
+
+  .content {
+    background-color: map_get($colors, spotifyBlack);
+
+    ion-list-header {
+      font-weight: bold;
+      font-size: 20px;
+      background-color: map_get($colors, spotifyBlack);
+      color: white;
+    }
+
+    ion-item {
+      background-color: map_get($colors, spotifyBlack);
+
+      ion-label {
+        font-size: 16px;
+        color: white;
+      }
+
+      p {
+        color: map_get($colors, spotifyVeryLightGrey);
+      }
+
+      ion-select {
+        min-width: 200px;
+        color: map_get($colors, spotifyVeryLightGrey);
+      }
+    }
+  }
+}

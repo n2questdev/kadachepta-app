@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ artist.name }}</ion-title>
+
+    <ion-buttons left>
+      <button ion-button icon-only (tap)="dismiss()">
+        <ion-icon class="navbar-button" name="ios-arrow-back-outline" item-end></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button icon-only>
+        <ion-icon class="navbar-button" name="md-more" item-end></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-row>
+    <ion-col text-center>
+      <img class="artist-image" src="{{ artist.picture }}" />
+      <p class="artist-name">{{ artist.name }}</p>
+
+      <ion-spinner *ngIf="!loadedFollowing" color="spotifyPrimary"></ion-spinner>
+      <button (click)="followArtist()" *ngIf="!isFollowing && loadedFollowing" class="follow-button" ion-button round outline small>FOLLOW</button>
+      <button (click)="unfollowArtist()" *ngIf="isFollowing && loadedFollowing" class="following-button" ion-button round outline small>FOLLOWING</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col text-center>
+      <button class="shuffle-play" ion-button color="spotifyPrimary" round>SHUFFLE PLAY</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-item no-lines>
+    <ion-label>Download</ion-label>
+    <ion-toggle checked="false" color="spotifyPrimary"></ion-toggle>
+  </ion-item>
+
+  <ion-row *ngIf="!loadedAlbums" align-items-center>
+    <ion-col text-center>
+      <br>
+      <ion-spinner color="spotifyPrimary"></ion-spinner>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="loadedAlbums && albums.length <= 0">
+    <ion-col text-center>
+      <img class="demo-image" src="assets/icon.png">
+      <p class="demo-message">There are no albums yet.</p>
+      <p class="demo-sub-message">Use the Kadachepta Admin to add your own albums here!</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-list *ngIf="loadedAlbums">
+    <ion-item *ngFor="let album of albums" no-lines (click)="viewAlbum(album)">
+      <ion-avatar item-start>
+        <img src="{{ album.picture }}">
+      </ion-avatar>
+
+      <p class="album-name">{{ album.name }}</p>
+      <p class="album-artist">{{ album.artistName }}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <footer-player></footer-player>
+</ion-footer>

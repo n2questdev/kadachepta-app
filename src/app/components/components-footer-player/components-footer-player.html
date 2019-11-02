@@ -1,0 +1,22 @@
+<div *ngIf='audioService.playingTrack()'>
+  <div class='song-progress' [style.width.%]='audioService.progress()'></div>
+
+  <ion-row>
+    <ion-col col-2>
+      <img class='avatar' (click)='showMusicPlayer()' src='{{audioService.playingTrack().art}}'>
+    </ion-col>
+
+    <ion-col col-8 (click)='showMusicPlayer()'>
+      <p>
+        <strong>{{audioService.playingTrack().title}}</strong> ⚬
+        <em>{{audioService.playingTrack().artist}}</em>
+      </p>
+    </ion-col>
+
+    <ion-col col-2>
+      <audio-track-play light [audioTrack]='audioService.playingTrack()'>
+        <ion-spinner color='spotifyPrimary'></ion-spinner>
+      </audio-track-play>
+    </ion-col>
+  </ion-row>
+</div>

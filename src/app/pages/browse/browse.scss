@@ -1,0 +1,56 @@
+page-browse {
+  .content {
+    background-color: map_get($colors, spotifyBlack);
+
+    ion-item {
+      padding: 0px;
+      margin: 0px;
+
+      ion-label {
+        margin: 0px;
+      }
+    }
+
+    ion-scroll[scrollX] {
+      background-color: map_get($colors, spotifyBlack);
+      white-space: nowrap;
+      height: 220px;
+      overflow: hidden;
+
+      div.scroll-content {
+        padding: 0px;
+      }
+
+      .scroll-item {
+        display: inline-block;
+        max-width: 150px;
+      }
+
+      ion-col {
+        img {
+          height: 150px;
+          width: 150px;
+        }
+
+        div {
+          text-align: center;
+          font-size: 12px;
+          color: white;
+          margin-top: 5px;
+        }
+
+        p {
+          text-align: center;
+          font-size: 12px;
+          color: map_get($colors, spotifyVeryLightGrey);
+          margin-top: 5px;
+        }
+      }
+    }
+
+    /* Hide ion-content scrollbar */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

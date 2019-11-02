@@ -1,0 +1,43 @@
+page-login-details {
+  .back-button {
+    color: map_get($colors, textColor);
+  }
+
+  .content {
+    background: map_get($colors, spotifyPrimary);
+
+    .title {
+        color: map_get($colors, textColor);
+        font-size: 30px;
+    }
+
+    ion-list {
+      text-align: center;
+      height: 100%;
+
+      ion-item {
+        background-color: map_get($colors, textColor);
+        opacity: 0.8;
+        border-radius: 20px;
+        margin: 5px 0;
+
+        ion-icon {
+          margin-right: 20px;
+        }
+
+        ion-input {
+          margin: 0;
+          color: map_get($colors, spotifyPrimary);
+          border: 0px;
+        }
+      }
+    }
+
+    .action-button {
+        text-transform: none;
+        opacity: 0.8;
+        font-size: 20px;
+        color: map_get($colors, spotifyPrimary);
+    }
+  }
+}

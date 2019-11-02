@@ -1,0 +1,54 @@
+<ion-content class="no-scroll" no-bounce fullscreen text-center padding>
+  <ion-col text-center>
+    <img id="spotify-logo" src="assets/logo.png">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col text-center>
+          <button full ion-button round color="spotifyPrimary" (click)="goToSignup()">SIGN UP FREE</button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col text-center>
+          <p>Already a user?</p>
+          <button full ion-button round color="light" (click)="goToLogin()">LOG IN</button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col text-center>
+          <button class="social-button" ion-button round color="facebook" (click)="signInWithFacebook()">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </button>
+        </ion-col>
+
+        <ion-col text-center>
+          <button class="social-button" ion-button round color="googlePlus" (click)="signInWithGoogle()">
+            <ion-icon name="logo-googleplus"></ion-icon>
+          </button>
+        </ion-col>
+
+        <ion-col text-center>
+          <button class="social-button" ion-button round color="twitter" (click)="signInWithTwitter()">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-col>
+
+  <ion-slides autoplay="4000" pager loop>
+    <ion-slide>
+      <p>Play your favourite songs and artists.</p>
+    </ion-slide>
+
+    <ion-slide>
+      <p>No credit card required.</p>
+    </ion-slide>
+
+    <ion-slide>
+      <p>Listen on all devices.</p>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

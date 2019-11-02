@@ -1,0 +1,102 @@
+page-library {
+  .item-md ion-avatar[item-left],
+  .item-md ion-thumbnail[item-left],
+  .item-md ion-avatar[item-start],
+  .item-md ion-thumbnail[item-start],
+  .item-ios ion-avatar[item-left],
+  .item-ios ion-thumbnail[item-left],
+  .item-ios ion-avatar[item-start],
+  .item-ios ion-thumbnail[item-start] {
+    margin: 0px;
+  }
+
+  .avatar-navbar {
+    background-color: map_get($colors, spotifyDarkGrey);
+    padding: 0px;
+    margin: 0px;
+
+    ion-label {
+      margin: 0px;
+    }
+  }
+
+  ion-buttons {
+    button {
+      ion-icon {
+        color: white;
+      }
+    }
+  }
+
+  .content {
+    background-color: map_get($colors, spotifyBlack);
+
+    #library-list {
+      ion-item {
+        background-color: map_get($colors, spotifyBlack);
+
+        ion-icon {
+          background-color: map_get($colors, spotifyBlack);
+          color: map_get($colors, spotifyVeryLightGrey);
+        }
+
+        p {
+          background-color: map_get($colors, spotifyBlack);
+          color: white;
+          font-size: 16px;
+        }
+      }
+    }
+
+    ion-spinner {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .no-results {
+      color: white;
+    }
+
+    #recently-played-list {
+      ion-item {
+        background-color: map_get($colors, spotifyBlack);
+
+        .item-text {
+          background-color: map_get($colors, spotifyBlack);
+          color: white;
+          font-size: 16px;
+          margin-left: 10px;
+        }
+
+        .item-sub-text {
+          background-color: map_get($colors, spotifyBlack);
+          color: map_get($colors, spotifyVeryLightGrey);
+          font-size: 12px;
+          margin-left: 10px;
+        }
+
+        .item-text.isPlaying {
+          background-color: map_get($colors, spotifyBlack);
+          color: map_get($colors, spotifyPrimary);
+          font-size: 16px;
+          margin-left: 10px;
+        }
+
+        .item-sub-text.isPlaying {
+          background-color: map_get($colors, spotifyBlack);
+          color: map_get($colors, spotifyPrimary);
+          font-size: 12px;
+          margin-left: 10px;
+        }
+
+        button {
+          color: map_get($colors, spotifyVeryLightGrey);
+
+          ion-icon {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+}

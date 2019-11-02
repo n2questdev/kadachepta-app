@@ -1,0 +1,62 @@
+page-login {
+  .content {
+    background: url("../assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: grayscale($color: #000000);
+
+    #spotify-logo {
+      z-index: 300000;
+    }
+
+    ion-grid {
+      height: 80%;
+      justify-content: center;
+
+      p {
+        color: white;
+        font-weight: bold;
+      }
+
+      button {
+        font-weight: bold;
+      }
+    }
+
+    ion-header img {
+      opacity: 0.8;
+      padding: 20px;
+    }
+
+    ion-slides {
+      height: 100px;
+      position: absolute;
+      bottom: 0;
+      margin-left: -20px;
+
+      ion-slide {
+        color: #fff;
+
+        p {
+          font-size: 20px;
+          font-weight: bold;
+        }
+      }
+
+      .swiper-pagination-bullet {
+        background: map-get($colors, light);
+      }
+    }
+
+    .social-button {
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+
+      ion-icon {
+        font-size: 30px;
+      }
+    }
+  }
+}

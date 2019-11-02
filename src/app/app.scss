@@ -1,0 +1,166 @@
+// http://ionicframework.com/docs/theming/
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.tabs-md-spotifyDarkGrey .tab-button:hover:not(.disable-hover),
+.tabs-md-spotifyDarkGrey .tab-button[aria-selected="true"],
+.tabs-md-spotifyDarkGrey .tab-button[aria-selected="true"] .tab-button-icon {
+  color: map_get($colors, spotifyPrimary);
+}
+
+.tabs-ios-spotifyDarkGrey .tab-button:hover:not(.disable-hover),
+.tabs-ios-spotifyDarkGrey .tab-button[aria-selected="true"],
+.tabs-ios-spotifyDarkGrey .tab-button[aria-selected="true"] .tab-button-icon {
+  color: map_get($colors, spotifyPrimary);
+}
+
+.toolbar-background {
+  background-color: map_get($colors, spotifyDarkGrey);
+}
+
+.toolbar-title {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.button-round-md,
+.button-round-ios {
+  padding: 0 0.9rem;
+  margin-top: 10px;
+  font-size: 11px;
+  border-width: 2px;
+  border-color: map_get($colors, spotifyPrimary);
+}
+
+.button-outline-md,
+.button-outline-ios {
+  color: white;
+  border-color: white;
+  font-size: 11px;
+  margin-top: 10px;
+  border-width: 2px;
+  border-color: map_get($colors, spotifyPrimary);
+}
+
+.item-md.item-block .item-inner,
+.item-ios.item-block .item-inner {
+  padding-right: 0px;
+}
+
+.follow-button {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border-color: map_get($colors, spotifyVeryLightGrey);
+}
+
+.following-button {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border-color: map_get($colors, spotifyPrimary);
+}
+
+.shuffle-play {
+  font-weight: bold;
+  width: 140px;
+  z-index: 100;
+}
+
+.item-title {
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.item-sub-title {
+  color: map_get($colors, spotifyVeryLightGrey);
+  text-align: center;
+  font-size: 12px;
+}
+
+.line-break {
+  overflow: inherit;
+  text-overflow: inherit;
+  white-space: normal;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar-button {
+  color: map_get($colors, spotifyVeryLightGrey);
+}
+
+ion-footer {
+  text-align: center;
+  border-bottom: 1px solid map_get($colors, spotifyLightGrey);
+  background-color: map_get($colors, spotifyDarkGrey);
+  max-height: 56px;
+
+  img {
+    margin-top: -5px;
+  }
+
+  audio-track-play {
+    margin-top: -5px;
+
+    .button-clear-md,
+    .button-clear-ios {
+      color: white;
+    }
+  }
+
+  p {
+    margin-top: 8px;
+    color: white;
+
+    strong {
+      color: map_get($colors, spotifyVeryLightGrey);
+    }
+  }
+}
+
+.song-progress {
+  height: 3px;
+  z-index: 9999;
+  background-color: map_get($colors, spotifyPrimary);
+}
+
+.no-scroll .scroll-content {
+  overflow: hidden;
+}
+
+ion-item {
+  ion-icon {
+    color: map_get($colors, spotifyPrimary);
+  }
+}
+
+.demo-image {
+  width: 100px;
+  height: 100px;
+}
+
+.demo-message {
+  color: map_get($colors, textColor);
+}
+
+.demo-sub-message {
+  color: map_get($colors, spotifyPrimary);
+}
