@@ -42,7 +42,7 @@ import { AudioService } from './services/AudioService';
 
 // Initialize Firebase
 const firebaseConfig = {
-    apiKey: 'AIzaSyCICiITgp1NHbGwW7GEqgJoYYDZK_yuihk',
+    apiKey: 'firebase_api_key_here',
     authDomain: 'kadacheptaadmin.firebaseapp.com',
     databaseURL: 'https://kadacheptaadmin.firebaseio.com',
     projectId: 'kadacheptaadmin',
