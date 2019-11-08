@@ -1,8 +1,8 @@
-import { IAudioTrack } from "./ionic-audio-interfaces";
-import { Injectable, Optional } from "@angular/core";
+import { IAudioTrack } from './ionic-audio-interfaces';
+import { Injectable, Optional } from '@angular/core';
 
 declare let window;
-window.AudioContext = window["AudioContext"] || window["webkitAudioContext"];
+window.AudioContext = window['AudioContext'] || window['webkitAudioContext'];
 
 /**
  * Creates an HTML5 audio track
@@ -14,121 +14,13 @@ window.AudioContext = window["AudioContext"] || window["webkitAudioContext"];
  */
 @Injectable()
 export class WebAudioTrack implements IAudioTrack {
-  songId: string;
-  artistId //this.audio.controls = true;
-    : string;
-  albumId: string;
-  title?: string;
-  artist?: string;
-  art?: string;
-  
-  private audio: HTMLAudioElement;
-  public isPlaying: boolean = false;
-  public isFinished: boolean = false;
-  private _progress: number = 0;
-  private _completed: number = 0;
-  private _duration: number;
-  private _id: number;
-  private _isLoading: boolean;
-  private _hasLoaded: boolean;
-  onTrackEndedCallback: any;
-  
-  constructor(public src: string, @Optional() public preload: string = "none") {
+
+  constructor(public src: string, @Optional() public preload: string = 'none') {
     // audio context not needed for now
     // @Optional() private ctx: AudioContext = undefined
     // this.ctx = this.ctx || new AudioContext();
 
     this.createAudio();
-  }
-
-  private createAudio() {
-    this.audio = new Audio();
-    this.audio.src = this.src;
-    this.audio.preload = this.preload;
-    //this.audio.controls = true;
-    //this.audio.autoplay = false;
-
-    this.audio.addEventListener(
-      "timeupdate",
-      e => {
-        this.onTimeUpdate(e);
-      },
-      false
-    );
-
-    this.audio.addEventListener(
-      "error",
-      err => {
-        console.log(`Audio error => track ${this.src}`, err);
-        this.isPlaying = false;
-      },
-      false
-    );
-
-    this.audio.addEventListener(
-      "canplay",
-      () => {
-        this._isLoading = false;
-        this._hasLoaded = true;
-      },
-      false
-    );
-
-    this.audio.addEventListener(
-      "playing",
-      () => {
-        console.log(`Playing track ${this.src}`);
-        this.isFinished = false;
-        this.isPlaying = true;
-      },
-      false
-    );
-
-    this.audio.addEventListener(
-      "ended",
-      () => {
-        this.isPlaying = false;
-        this.isFinished = true;
-        this._progress = 0;
-        this._completed = 0;
-        this._hasLoaded = false;
-        //this.destroy();
-        console.log("Finished playback");
-
-        this.onTrackEndedCallback();
-      },
-      false
-    );
-
-    this.audio.addEventListener(
-      "durationchange",
-      (e: any) => {
-        this._duration = e.target.duration;
-      },
-      false
-    );
-  }
-
-  private onTimeUpdate(e: Event) {
-    if (this.isPlaying && this.audio.currentTime > 0) {
-      this._progress = this.audio.currentTime;
-      this._completed =
-        this.audio.duration > 0
-          ? Math.trunc((this.audio.currentTime / this.audio.duration) * 100) /
-            100
-          : 0;
-    }
-  }
-
-  static formatTime(value: number) {
-    let s = Math.trunc(value % 60);
-    let m = Math.trunc((value / 60) % 60);
-    let h = Math.trunc((value / 60 / 60) % 60);
-    return h > 0
-      ? `${h < 10 ? "0" + h : h}:${m < 10 ? "0" + m : m}:${
-          s < 10 ? "0" + s : s
-        }`
-      : `${m < 10 ? "0" + m : m}:${s < 10 ? "0" + s : s}`;
   }
 
   /**
@@ -202,10 +94,10 @@ export class WebAudioTrack implements IAudioTrack {
    * @type {boolean}
    */
   public get canPlay(): boolean {
-    let format = `audio/${this.audio.src.substr(
-      this.audio.src.lastIndexOf(".") + 1
+    const format = `audio/${this.audio.src.substr(
+      this.audio.src.lastIndexOf('.') + 1
     )}`;
-    return this.audio && this.audio.canPlayType(format) != "";
+    return this.audio && this.audio.canPlayType(format) != '';
   }
 
   /**
@@ -229,6 +121,114 @@ export class WebAudioTrack implements IAudioTrack {
   public get hasLoaded(): boolean {
     return this._hasLoaded;
   }
+  songId: string;
+  artistId // this.audio.controls = true;
+    : string;
+  albumId: string;
+  title?: string;
+  artist?: string;
+  art?: string;
+
+  private audio: HTMLAudioElement;
+  public isPlaying = false;
+  public isFinished = false;
+  private _progress = 0;
+  private _completed = 0;
+  private _duration: number;
+  private _id: number;
+  private _isLoading: boolean;
+  private _hasLoaded: boolean;
+  onTrackEndedCallback: any;
+
+  static formatTime(value: number) {
+    const s = Math.trunc(value % 60);
+    const m = Math.trunc((value / 60) % 60);
+    const h = Math.trunc((value / 60 / 60) % 60);
+    return h > 0
+      ? `${h < 10 ? '0' + h : h}:${m < 10 ? '0' + m : m}:${
+          s < 10 ? '0' + s : s
+        }`
+      : `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+  }
+
+  private createAudio() {
+    this.audio = new Audio();
+    this.audio.src = this.src;
+    this.audio.preload = this.preload;
+    // this.audio.controls = true;
+    // this.audio.autoplay = false;
+
+    this.audio.addEventListener(
+      'timeupdate',
+      e => {
+        this.onTimeUpdate(e);
+      },
+      false
+    );
+
+    this.audio.addEventListener(
+      'error',
+      err => {
+        console.log(`Audio error => track ${this.src}`, err);
+        this.isPlaying = false;
+      },
+      false
+    );
+
+    this.audio.addEventListener(
+      'canplay',
+      () => {
+        this._isLoading = false;
+        this._hasLoaded = true;
+      },
+      false
+    );
+
+    this.audio.addEventListener(
+      'playing',
+      () => {
+        console.log(`Playing track ${this.src}`);
+        this.isFinished = false;
+        this.isPlaying = true;
+      },
+      false
+    );
+
+    this.audio.addEventListener(
+      'ended',
+      () => {
+        this.isPlaying = false;
+        this.isFinished = true;
+        this._progress = 0;
+        this._completed = 0;
+        this._hasLoaded = false;
+        // this.destroy();
+        console.log('Finished playback');
+
+        this.onTrackEndedCallback();
+      },
+      false
+    );
+
+    this.audio.addEventListener(
+      'durationchange',
+      (e: any) => {
+        this._duration = e.target.duration;
+      },
+      false
+    );
+  }
+
+  private onTimeUpdate(e: Event) {
+    if (this.isPlaying && this.audio.currentTime > 0) {
+      this._progress = this.audio.currentTime;
+      this._completed =
+        this.audio.duration > 0
+          ? Math.trunc((this.audio.currentTime / this.audio.duration) * 100) /
+            100
+          : 0;
+    }
+  }
 
   /**
    * Plays current track
@@ -237,7 +237,7 @@ export class WebAudioTrack implements IAudioTrack {
    */
   play(onTrackEndedCallback: any) {
     this.onTrackEndedCallback = onTrackEndedCallback;
-    
+
     if (!this.audio) {
       this.createAudio();
     }
@@ -247,8 +247,8 @@ export class WebAudioTrack implements IAudioTrack {
       this._isLoading = true;
     }
 
-    //var source = this.ctx.createMediaElementSource(this.audio);
-    //source.connect(this.ctx.destination);
+    // var source = this.ctx.createMediaElementSource(this.audio);
+    // source.connect(this.ctx.destination);
     this.audio.play();
   }
 
@@ -258,7 +258,7 @@ export class WebAudioTrack implements IAudioTrack {
    * @method pause
    */
   pause() {
-    if (!this.isPlaying) return;
+    if (!this.isPlaying) { return; }
     console.log(`Pausing track ${this.src}`);
     this.audio.pause();
     this.isPlaying = false;
@@ -270,13 +270,13 @@ export class WebAudioTrack implements IAudioTrack {
    * @method stop
    */
   stop() {
-    if (!this.audio) return;
+    if (!this.audio) { return; }
     this.pause();
-    this.audio.removeEventListener("timeupdate", e => {
+    this.audio.removeEventListener('timeupdate', e => {
       this.onTimeUpdate(e);
     });
     this.isFinished = true;
-    //this.destroy();
+    // this.destroy();
   }
 
   /**
@@ -286,7 +286,7 @@ export class WebAudioTrack implements IAudioTrack {
    * @param {number} time the new position to seek to
    */
   seekTo(time: number) {
-    if (!this.audio) return;
+    if (!this.audio) { return; }
     this.audio.currentTime = time;
   }
 

@@ -5,4 +5,4 @@ import { ComponentsFooterPlayerComponent } from './components-footer-player/comp
 	imports: [],
 	exports: [ComponentsFooterPlayerComponent]
 })
-export class ComponentsModule {}
+export class ComponentsModule { }

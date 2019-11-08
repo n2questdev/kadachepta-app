@@ -1,40 +1,40 @@
 
 /**
  * Defines the audio provider contract
- * 
+ *
  * @export
  * @interface IAudioProvider
  */
 export interface IAudioProvider {
   current: number;
   tracks: IAudioTrack[];
-  
+
   create(track: ITrackConstraint): IAudioTrack;
   replace(oldAudioTrack: IAudioTrack, newTrack: ITrackConstraint): IAudioTrack;
   add(track: IAudioTrack);
   play(index: number, onTrackEndedCallback: any);
   pause(index?: number);
   stop(index?: number);
-} 
+}
 
 /**
  * Defines the properties for JSON objects representing tracks to be played
- * 
+ *
  * @export
  * @interface ITrackConstraint
  */
 export interface ITrackConstraint {
-  id?:number;
+  id?: number;
   src: string;
   title?: string;
   artist?: string;
-  art?: string;  
+  art?: string;
   preload?: string;
 }
 
 /**
- * Defines the audio track contract 
- * 
+ * Defines the audio track contract
+ *
  * @export
  * @interface IAudioTrack
  * @extends {ITrackConstraint}
@@ -42,10 +42,10 @@ export interface ITrackConstraint {
 export interface IAudioTrack extends ITrackConstraint {
   src: string;
   id: number;
-  isPlaying: boolean; 
+  isPlaying: boolean;
   isLoading: boolean;
   isFinished: boolean;
-  hasLoaded: boolean
+  hasLoaded: boolean;
   duration: number;
   progress: number;
   completed: number;
@@ -54,7 +54,7 @@ export interface IAudioTrack extends ITrackConstraint {
   songId: string;
   artistId: string;
   albumId: string;
-  
+
   play(onTrackEndedCallback: any);
   pause();
   stop();

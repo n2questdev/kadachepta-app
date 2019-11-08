@@ -2,10 +2,10 @@ import {
   IAudioProvider,
   ITrackConstraint,
   IAudioTrack
-} from "./ionic-audio-interfaces";
-import { Injectable } from "@angular/core";
-import { WebAudioTrack } from "./ionic-audio-web-track";
-import { CordovaAudioTrack } from "./ionic-audio-cordova-track";
+} from './ionic-audio-interfaces';
+import { Injectable } from '@angular/core';
+import { WebAudioTrack } from './ionic-audio-web-track';
+import { CordovaAudioTrack } from './ionic-audio-cordova-track';
 
 /**
  * Creates an audio provider based on the environment.
@@ -17,7 +17,7 @@ import { CordovaAudioTrack } from "./ionic-audio-cordova-track";
  * @return {IAudioProvider} An IAudioProvider instance
  */
 export function defaultAudioProviderFactory() {
-  return window.hasOwnProperty("cordova") && window.hasOwnProperty("Media")
+  return window.hasOwnProperty('cordova') && window.hasOwnProperty('Media')
     ? new CordovaMediaProvider()
     : new WebAudioProvider();
 }
@@ -46,7 +46,7 @@ export abstract class AudioProvider implements IAudioProvider {
    * @return null
    */
   create(track: ITrackConstraint) {
-    console.error("Not implemented in base class");
+    console.error('Not implemented in base class');
     return null;
   }
 
@@ -56,7 +56,7 @@ export abstract class AudioProvider implements IAudioProvider {
    * @param newTrack
    */
   replace(oldAudioTrack: IAudioTrack, newTrack: ITrackConstraint): IAudioTrack {
-    console.error("Not implemented in base class");
+    console.error('Not implemented in base class');
     return null;
   }
 
@@ -77,7 +77,7 @@ export abstract class AudioProvider implements IAudioProvider {
    * @param {number} index The track id
    */
   play(index: number, onTrackEndedCallback: any) {
-    if (index === undefined || index > AudioProvider.tracks.length - 1) return;
+    if (index === undefined || index > AudioProvider.tracks.length - 1) { return; }
     this._current = index;
     AudioProvider.tracks[index].play(onTrackEndedCallback);
   }
@@ -89,18 +89,20 @@ export abstract class AudioProvider implements IAudioProvider {
    * @param {number} [index] The track id, or if undefined it will pause whichever track currently playing
    */
   pause(index?: number) {
-    if (this._current === undefined || index > AudioProvider.tracks.length - 1)
+    if (this._current === undefined || index > AudioProvider.tracks.length - 1) {
       return;
+    }
 
     index = index || this._current;
     AudioProvider.tracks[index].pause();
   }
 
   seekTo(time: number) {
-    if (this._current === undefined || index > AudioProvider.tracks.length - 1)
+    if (this._current === undefined || index > AudioProvider.tracks.length - 1) {
       return;
+    }
 
-    var index = index || this._current;
+    let index = index || this._current;
     AudioProvider.tracks[index].seekTo(time);
   }
 
@@ -122,8 +124,9 @@ export abstract class AudioProvider implements IAudioProvider {
    * @param {number} [index] The track id, or if undefined it will stop whichever track currently playing
    */
   stop(index?: number) {
-    if (this._current === undefined || index > AudioProvider.tracks.length - 1)
+    if (this._current === undefined || index > AudioProvider.tracks.length - 1) {
       return;
+    }
     index = index || this._current;
     AudioProvider.tracks[index].stop();
     this._current = undefined;
@@ -145,7 +148,7 @@ export abstract class AudioProvider implements IAudioProvider {
     }
   }
 
-  canPlay(): any {    
+  canPlay(): any {
     if (this.current === undefined || this.tracks.length <= 0) {
       return true;
     }
@@ -200,25 +203,25 @@ export abstract class AudioProvider implements IAudioProvider {
 export class WebAudioProvider extends AudioProvider {
   constructor() {
     super();
-    console.log("Using Web Audio provider");
+    console.log('Using Web Audio provider');
   }
 
   create(track: ITrackConstraint) {
-    let audioTrack = new WebAudioTrack(track.src, track.preload);
+    const audioTrack = new WebAudioTrack(track.src, track.preload);
     Object.assign(audioTrack, track);
 
-    let trackId = WebAudioProvider.tracks.push(audioTrack);
+    const trackId = WebAudioProvider.tracks.push(audioTrack);
     audioTrack.id = trackId - 1;
 
     return audioTrack;
   }
 
   replace(oldAudioTrack: IAudioTrack, newTrack: ITrackConstraint): IAudioTrack {
-    let index = WebAudioProvider.tracks.findIndex(track =>
+    const index = WebAudioProvider.tracks.findIndex(track =>
       Object.is(oldAudioTrack, track)
     );
 
-    let newAudioTrack =
+    const newAudioTrack =
       newTrack instanceof WebAudioTrack
         ? newTrack
         : new WebAudioTrack(newTrack.src, newTrack.preload);
@@ -228,12 +231,12 @@ export class WebAudioProvider extends AudioProvider {
     if (index > -1) {
       WebAudioProvider.tracks.splice(index, 1, newAudioTrack);
     } else {
-      let trackId = WebAudioProvider.tracks.push(newAudioTrack);
+      const trackId = WebAudioProvider.tracks.push(newAudioTrack);
       newAudioTrack.id = trackId - 1;
     }
 
-    console.log("Replaced audio track", oldAudioTrack, newAudioTrack);
-    console.log("Current track list", WebAudioProvider.tracks);
+    console.log('Replaced audio track', oldAudioTrack, newAudioTrack);
+    console.log('Current track list', WebAudioProvider.tracks);
 
     return newAudioTrack;
   }
@@ -251,14 +254,14 @@ export class WebAudioProvider extends AudioProvider {
 export class CordovaMediaProvider extends AudioProvider {
   constructor() {
     super();
-    console.log("Using Cordova Media provider");
+    console.log('Using Cordova Media provider');
   }
 
   create(track: ITrackConstraint) {
-    let audioTrack = new CordovaAudioTrack(track.src);
+    const audioTrack = new CordovaAudioTrack(track.src);
     Object.assign(audioTrack, track);
 
-    let trackId = CordovaMediaProvider.tracks.push(audioTrack);
+    const trackId = CordovaMediaProvider.tracks.push(audioTrack);
     audioTrack.id = trackId - 1;
 
     return audioTrack;

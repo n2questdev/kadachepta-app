@@ -1,5 +1,5 @@
 import { Directive, Input, Output, HostListener, EventEmitter } from '@angular/core';
-import { ITrackConstraint } from './ionic-audio-interfaces'; 
+import { ITrackConstraint } from './ionic-audio-interfaces';
 
 /**
  * Generated class for the AudioPlaylistItemDirective directive.
@@ -11,16 +11,20 @@ import { ITrackConstraint } from './ionic-audio-interfaces';
   selector: '[audio-playlist-item]' // Attribute selector
 })
 export class AudioPlaylistItemDirective {
-  @Input() track: ITrackConstraint;
-  @Input() currentTrack: ITrackConstraint;
-  @Output() currentTrackChange = new EventEmitter<ITrackConstraint>();
-
-  private static _currentIndex: number = -1;
-  private static _tracklist: ITrackConstraint[] = [];
-  private _index: number;
 
   constructor() {
   }
+
+  get currentIndex() {
+    return AudioPlaylistItemDirective._currentIndex;
+  }
+
+  private static _currentIndex = -1;
+  private static _tracklist: ITrackConstraint[] = [];
+  @Input() track: ITrackConstraint;
+  @Input() currentTrack: ITrackConstraint;
+  @Output() currentTrackChange = new EventEmitter<ITrackConstraint>();
+  private _index: number;
 
   ngOnInit() {
       this._index = AudioPlaylistItemDirective._tracklist.push(this.track) - 1;
@@ -36,19 +40,15 @@ export class AudioPlaylistItemDirective {
     }
   }
 
-  get currentIndex() {
-    return AudioPlaylistItemDirective._currentIndex;
-  }
-
   private _play(index?: number) {
     index = index || this._index;
 
     console.log('Playing', index);
-    
+
     AudioPlaylistItemDirective._currentIndex = index;
-    
+
     this.currentTrack = AudioPlaylistItemDirective._tracklist[index];
     this.currentTrackChange.emit(this.currentTrack);
-    
+
   }
 }

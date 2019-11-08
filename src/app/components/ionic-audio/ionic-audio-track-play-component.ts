@@ -1,6 +1,6 @@
-import { IAudioTrack } from "./ionic-audio-interfaces";
-import { Component, ElementRef, Input } from "@angular/core";
-import { MusicControls } from "@ionic-native/music-controls";
+import { IAudioTrack } from './ionic-audio-interfaces';
+import { Component, ElementRef, Input } from '@angular/core';
+import { MusicControls } from '@ionic-native/music-controls';
 
 /**
  * # ```<audio-track-play>```
@@ -37,7 +37,7 @@ import { MusicControls } from "@ionic-native/music-controls";
  * @class AudioTrackPlayComponent
  */
 @Component({
-  selector: "audio-track-play",
+  selector: 'audio-track-play',
   template: `
     <button ion-button icon-only clear (click)="toggle($event)" [disabled]="audioTrack.error || audioTrack.isLoading">
 
@@ -65,7 +65,7 @@ export class AudioTrackPlayComponent {
    */
   @Input()
   set light(val: boolean) {
-    this.el.nativeElement.firstElementChild.classList.add("light");
+    this.el.nativeElement.firstElementChild.classList.add('light');
   }
 
   /**
@@ -76,7 +76,7 @@ export class AudioTrackPlayComponent {
    */
   @Input()
   set dark(val: boolean) {
-    this.el.nativeElement.firstElementChild.classList.add("dark");
+    this.el.nativeElement.firstElementChild.classList.add('dark');
   }
 
   constructor(private el: ElementRef, private musicControls: MusicControls) {}
