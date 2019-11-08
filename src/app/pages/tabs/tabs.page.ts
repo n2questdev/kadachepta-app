@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
+import { HomePage } from '../home/home.page';
+import { BrowsePage } from '../browse/browse.page';
+import { SearchPage } from 'src/app/pages/search/search.page';
+import { LibraryPage } from '../library/library.page';
 
-import { HomePage } from '../home/home';
-import { BrowsePage } from '../browse/browse';
-import { SearchPage } from '../search/search';
-import { LibraryPage } from '../library/library';
 
 @Component({
   selector: 'page-tabs',

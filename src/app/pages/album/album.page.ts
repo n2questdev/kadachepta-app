@@ -11,22 +11,22 @@ import { FirestoreService } from '../../services/FirestoreService';
 import { AudioService } from '../../services/AudioService';
 import { AuthService } from '../../services/AuthService';
 
-import { AlbumPage } from '../album/album';
-import { ArtistPage } from '../artist/artist';
+import { ArtistPage } from '../artist/artist.page';
 
 import { Song } from '../../data/Song';
-import { Playlist } from '../../data/Playlist';
+import { Album } from '../../data/Album';
 import { ViewController } from '@ionic/core';
 
 @Component({
-  selector: 'page-playlist',
-  templateUrl: 'playlist.html'
+  selector: 'page-album',
+  templateUrl: 'album.html'
 })
-export class PlaylistPage {
+export class AlbumPage {
   userId: string;
   isFollowing = false;
 
-  playlist: Playlist = new Playlist();
+  albumId: string;
+  album: Album = new Album();
   songs: Song[] = [];
   tracks: any[] = [];
 
@@ -44,7 +44,7 @@ export class PlaylistPage {
     private authService: AuthService,
     private events: Events
   ) {
-    this.playlist = navParams.get('playlist');
+    this.albumId = navParams.get('albumId');
 
     this.authService.afAuth.user.subscribe(user => {
       if (user) {
@@ -58,15 +58,16 @@ export class PlaylistPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PlaylistPage');
+    console.log('ionViewDidLoad AlbumPage');
 
-    this.getPlaylistSongs();
+    this.getAlbum();
+    this.getAlbumSongs();
   }
 
   ionViewDidEnter() {
-    console.log('ionViewDidEnter PlaylistPage');
+    console.log('ionViewDidEnter AlbumPage');
 
-    this.getIsFollowingPlaylist();
+    this.getIsFollowingAlbum();
     this.updateSongIsPlaying();
   }
 
@@ -82,31 +83,27 @@ export class PlaylistPage {
     }
   }
 
-  getIsFollowingPlaylist() {
+  getIsFollowingAlbum() {
     this.firestoreService
-      .getIsFollowingPlaylist(this.userId, this.playlist)
+      .getIsFollowingAlbum(this.userId, this.album)
       .then((result: any) => {
         this.isFollowing = result.isFollowing;
         this.loadedFollowing = true;
       });
   }
 
-  followPlaylist() {
-    this.firestoreService
-      .followPlaylist(this.userId, this.playlist)
-      .then(() => {
-        this.isFollowing = true;
-        this.showToast('Following \'' + this.playlist.name + '\'');
-      });
+  followAlbum() {
+    this.firestoreService.followAlbum(this.userId, this.album).then(() => {
+      this.isFollowing = true;
+      this.showToast('Following \'' + this.album.name + '\'');
+    });
   }
 
-  unfollowPlaylist() {
-    this.firestoreService
-      .unfollowPlaylist(this.userId, this.playlist)
-      .then(() => {
-        this.isFollowing = false;
-        this.showToast('Unfollowing \'' + this.playlist.name + '\'');
-      });
+  unfollowAlbum() {
+    this.firestoreService.unfollowAlbum(this.userId, this.album).then(() => {
+      this.isFollowing = false;
+      this.showToast('Unfollowing \'' + this.album.name + '\'');
+    });
   }
 
   showToast(message: string) {
@@ -119,30 +116,34 @@ export class PlaylistPage {
     toast.present();
   }
 
-  getPlaylistSongs() {
-    this.firestoreService
-      .getPlaylistSongs(this.playlist)
-      .then((result: any) => {
-        this.songs = result.playlistSongs;
+  getAlbum() {
+    this.firestoreService.getAlbum(this.albumId).then((result: any) => {
+      this.album = result.album;
+    });
+  }
 
-        this.songs.forEach(song => {
-          var track = {
-            src: song.songUrl,
-            artist: song.artistName,
-            title: song.name,
-            art: song.albumPicture,
-            preload: 'metadata', // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
-            songId: song.songId,
-            artistId: song.artistId,
-            albumId: song.albumId
-          };
+  getAlbumSongs() {
+    this.firestoreService.getAlbumSongs(this.albumId).then((result: any) => {
+      this.songs = result.songs;
 
-          this.tracks.push(track);
-        });
+      this.songs.forEach(song => {
+        const track = {
+          src: song.songUrl,
+          artist: song.artistName,
+          title: song.name,
+          art: song.albumPicture,
+          preload: 'metadata', // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
+          songId: song.songId,
+          artistId: song.artistId,
+          albumId: song.albumId
+        };
 
-        this.loadedSongs = true;
-        this.updateSongIsPlaying();
+        this.tracks.push(track);
       });
+
+      this.loadedSongs = true;
+      this.updateSongIsPlaying();
+    });
   }
 
   playSong(trackIndex: number) {
@@ -151,23 +152,18 @@ export class PlaylistPage {
         this.userId,
         this.songs[trackIndex]
       );
-
       this.updateSongIsPlaying();
     }
   }
 
-  playlistSongActionSheet(song: Song) {
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
+  songActionSheet(song: Song) {
     const actionSheet = this.actionSheetCtrl.create({
       title: song.name + ' ⚬ ' + song.artistName,
       buttons: [
-        {
-          text: 'View Album',
-          role: 'viewAlbum',
-          icon: 'md-musical-notes',
-          handler: () => {
-            this.gotToAlbum(song);
-          }
-        },
         {
           text: 'View Artist',
           role: 'viewArtist',
@@ -182,15 +178,7 @@ export class PlaylistPage {
     actionSheet.present();
   }
 
-  gotToAlbum(song: Song) {
-    this.navCtrl.push(AlbumPage, { albumId: song.albumId });
-  }
-
   goToArtist(song: Song) {
     this.navCtrl.push(ArtistPage, { artistId: song.artistId });
-  }
-
-  dismiss() {
-    this.viewCtrl.dismiss();
   }
 }

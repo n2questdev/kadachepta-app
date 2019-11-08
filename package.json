@@ -17,10 +17,10 @@
     "@angular/core": "^8.2.13",
     "@angular/fire": "^5.2.1",
     "@angular/forms": "^8.2.13",
+    "@angular/language-service": "~8.2.13",
     "@angular/platform-browser": "^8.2.13",
     "@angular/platform-browser-dynamic": "^8.2.13",
     "@angular/router": "^8.2.13",
-    "@angular/language-service": "~8.2.13",
     "@ionic-native/background-mode": "^5.16.0",
     "@ionic-native/core": "^5.16.0",
     "@ionic-native/device": "^5.16.0",
@@ -48,6 +48,7 @@
     "rxjs": "~6.5.3",
     "rxjs-compat": "~6.5.3",
     "sw-toolbox": "3.6.0",
+    "tslint-angular": "^3.0.2",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

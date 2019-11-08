@@ -5,11 +5,11 @@ import { AuthService } from '../../services/AuthService';
 import { FirestoreService } from '../../services/FirestoreService';
 import { AudioService } from '../../services/AudioService';
 
-import { ProfilePage } from '../profile/profile';
-import { AlbumPage } from '../album/album';
-import { ArtistPage } from '../artist/artist';
-import { SettingsPage } from '../settings/settings';
-import { FavoritesPage } from '../favorites/favorites';
+import { ProfilePage } from '../profile/profile.page';
+import { AlbumPage } from '../album/album.page';
+import { ArtistPage } from '../artist/artist.page';
+import { SettingsPage } from '../settings/settings.page';
+import { FavoritesPage } from '../favorites/favorites.page';
 
 import { Song } from '../../data/Song';
 import { FavoriteType } from '../../data/FavoriteType';

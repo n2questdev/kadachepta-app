@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { BrowsePage } from './browse';
+import { BrowsePage } from './browse.page';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [

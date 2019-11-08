@@ -4,8 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from './services/AuthService';
 import { FirestoreService } from './services/FirestoreService';
-import { TabsPage } from './pages/tabs/tabs';
-import { LoginPage } from './pages/login/login';
+import { TabsPage } from './pages/tabs/tabs.page';
+import { LoginPage } from './pages/login/login.page';
 
 @Component({
   selector: 'app-root',

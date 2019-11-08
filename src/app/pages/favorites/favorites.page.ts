@@ -9,16 +9,16 @@ import {
 import { FirestoreService } from '../../services/FirestoreService';
 import { AuthService } from '../../services/AuthService';
 
-import { PlaylistPage } from '../playlist/playlist';
-import { AlbumPage } from '../album/album';
-import { ArtistPage } from '../artist/artist';
+import { PlaylistPage } from '../playlist/playlist.page';
+import { AlbumPage } from '../album/album.page';
+import { ArtistPage } from '../artist/artist.page';
 
-import { FavoriteType } from '../../data/FavoriteType';
-import { FavoriteItem } from '../../data/FavoriteItem';
-import { Playlist } from '../../data/Playlist';
-import { Song } from '../../data/Song';
-import { Album } from '../../data/Album';
-import { Artist } from '../../data/Artist';
+import { FavoriteType } from 'src/app/models/FavoriteType';
+import { FavoriteItem } from 'src/app/models/FavoriteItem';
+import { Playlist } from 'src/app/models/Playlist';
+import { Song } from 'src/app/models/Song';
+import { Album } from 'src/app/models/Album';
+import { Artist } from 'src/app/models/Artist';
 import { AudioService } from '../../services/AudioService';
 import { ViewController } from '@ionic/core';
 

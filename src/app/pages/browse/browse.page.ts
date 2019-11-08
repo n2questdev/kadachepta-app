@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from '@ionic/angular';
-import { PlaylistGroup } from 'src/data/PlaylistGroup';
-import { Genre } from 'src/data/Genre';
-import { FirestoreService } from 'src/services/FirestoreService';
-import { Randomizer } from 'src/data/Randomizer';
-import { GenreHelper } from 'src/data/GenreHelper';
-import { Playlist } from 'src/data/Playlist';
-import { PlaylistPage } from '../playlist/playlist';
-
+import { PlaylistGroup } from 'src/app/models/PlaylistGroup';
+import { Genre } from 'src/app/models/Genre';
+import { FirestoreService } from 'src/app/services/FirestoreService';
+import { Randomizer } from 'src/app/models/Randomizer';
+import { GenreHelper } from 'src/app/models/GenreHelper';
+import { Playlist } from 'src/app/models/Playlist';
+import { PlaylistPage } from '../playlist/playlist.page';
 
 @Component({
   selector: 'page-browse',

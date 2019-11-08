@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { LibraryPage } from './library';
+import { LibraryPage } from './library.page';
 
 @NgModule({
   declarations: [

@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { MusicPlayerPage } from '../../pages/music-player/music-player';
+import { MusicPlayerPage } from '../../pages/music-player/music-player.page';
 import { AudioService } from '../../services/AudioService';
 
 @Component({

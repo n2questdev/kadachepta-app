@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import {
   ActionSheetController,
   NavController,
@@ -12,18 +12,21 @@ import { AuthService } from '../../services/AuthService';
 import { FirestoreService } from '../../services/FirestoreService';
 import { AudioService } from '../../services/AudioService';
 
-import { AlbumPage } from '../album/album';
-import { ArtistPage } from '../artist/artist';
+import { AlbumPage } from '../album/album.page';
+import { ArtistPage } from '../artist/artist.page';
 
-import { Song } from '../../data/Song';
-import { LoginPage } from '../login/login';
+import { LoginPage } from '../login/login.page';
 import { ViewController } from '@ionic/core';
+import { Song } from 'src/app/models/Song';
+import { AppModule } from 'src/app/app.module';
 
 @Component({
   selector: 'page-profile',
-  templateUrl: 'profile.html'
+  templateUrl: 'profile.html',
+  styleUrls: ['./profile.page.scss']
 })
-export class ProfilePage {
+
+export class ProfilePage implements OnInit {
   user: firebase.User;
 
   recentlyPlayedSongs: Song[] = [];
@@ -39,7 +42,7 @@ export class ProfilePage {
     private authService: AuthService,
     private firestoreService: FirestoreService,
     private audioService: AudioService,
-    private app: App,
+    private app: AppModule,
     private zone: NgZone,
     private events: Events
   ) {
@@ -173,5 +176,7 @@ export class ProfilePage {
           });
         });
     }, 500);
+  }
+  ngOnInit() {
   }
 }

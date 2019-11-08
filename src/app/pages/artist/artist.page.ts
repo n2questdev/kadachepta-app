@@ -8,11 +8,11 @@ import {
 import { FirestoreService } from '../../services/FirestoreService';
 import { AuthService } from '../../services/AuthService';
 
-import { AlbumPage } from '../album/album';
+import { AlbumPage } from '../album/album.page';
 
-import { Artist } from '../../data/Artist';
-import { Album } from '../../data/Album';
 import { ViewController } from '@ionic/core';
+import { Album } from 'src/app/models/Album';
+import { Artist } from 'src/app/models/Artist';
 
 @Component({
   selector: 'page-artist',

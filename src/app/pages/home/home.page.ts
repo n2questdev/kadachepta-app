@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { FirestoreService } from 'src/services/FirestoreService';
-import { PlaylistGroup } from 'src/data/PlaylistGroup';
-import { Playlist } from 'src/data/Playlist';
-import { PlaylistPage } from '../playlist/playlist';
+import { FirestoreService } from 'src/app/services/FirestoreService';
+import { PlaylistGroup } from 'src/app/models/PlaylistGroup';
+import { Playlist } from 'src/app/models/Playlist';
+import { PlaylistPage } from '../playlist/playlist.page';
 
 @Component({
   selector: 'page-home',

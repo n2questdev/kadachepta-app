@@ -7,8 +7,9 @@ import {
 } from '@ionic/angular';
 
 import { BackgroundMode } from '@ionic-native/background-mode';
-import { AuthService } from 'src/services/AuthService';
-import { LoginDetailsPage } from '../login-details/login-details';
+import { AuthService } from 'src/app/services/AuthService';
+import { LoginDetailsPage } from '../login-details/login-details.page';
+import { AppModule } from 'src/app/app.module';
 
 @Component({
   selector: 'page-login',
@@ -16,7 +17,7 @@ import { LoginDetailsPage } from '../login-details/login-details';
 })
 export class LoginPage {
   constructor(
-    private app: App,
+    private app: AppModule,
     private navCtrl: NavController,
     private loadingCtrl: LoadingController,
     private authService: AuthService,

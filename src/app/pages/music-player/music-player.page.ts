@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { ActionSheetController, NavController } from '@ionic/angular';
 
 import { ViewController } from '@ionic/core';
-import { AuthService } from 'src/services/AuthService';
-import { Song } from 'src/data/Song';
-import { AudioService } from 'src/services/AudioService';
-import { FirestoreService } from 'src/services/FirestoreService';
+import { Song } from 'src/app/models/Song';
+import { AudioService } from 'src/app/services/AudioService';
+import { FirestoreService } from 'src/app/services/FirestoreService';
+import { AuthService } from 'src/app/services/AuthService';
 
 @Component({
-  selector: "page-music-player",
-  templateUrl: "music-player.html"
+  selector: 'page-music-player',
+  templateUrl: 'music-player.html'
 })
 export class MusicPlayerPage {
   userId: string;
@@ -33,13 +33,13 @@ export class MusicPlayerPage {
   }
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad MusicPlayerPage");
+    console.log('ionViewDidLoad MusicPlayerPage');
 
     this.getSong();
   }
 
   getSong() {
-    var playingTrack = this.audioService.playingTrack();
+    const playingTrack = this.audioService.playingTrack();
 
     this.firestoreService.getSong(playingTrack.songId).then((result: any) => {
       this.playingSong = result.song;
@@ -87,23 +87,23 @@ export class MusicPlayerPage {
   }
 
   songActionSheet() {
-    var playingTrack = this.audioService.playingTrack();
+    const playingTrack = this.audioService.playingTrack();
 
     const actionSheet = this.actionSheetCtrl.create({
-      title: playingTrack.title + " ⚬ " + playingTrack.artist,
+      title: playingTrack.title + ' ⚬ ' + playingTrack.artist,
       buttons: [
         {
-          text: "View Album",
-          role: "viewAlbum",
-          icon: "md-musical-notes",
+          text: 'View Album',
+          role: 'viewAlbum',
+          icon: 'md-musical-notes',
           handler: () => {
             this.gotToAlbum(playingTrack.albumId);
           }
         },
         {
-          text: "View Artist",
-          role: "viewArtist",
-          icon: "md-person",
+          text: 'View Artist',
+          role: 'viewArtist',
+          icon: 'md-person',
           handler: () => {
             this.goToArtist(playingTrack.artistId);
           }

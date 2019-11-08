@@ -10,11 +10,11 @@ import { FirestoreService } from '../../services/FirestoreService';
 import { AudioService } from '../../services/AudioService';
 import { AuthService } from '../../services/AuthService';
 
-import { AlbumPage } from '../album/album';
-import { ArtistPage } from '../artist/artist';
+import { AlbumPage } from '../album/album.page';
+import { ArtistPage } from '../artist/artist.page';
 
-import { Genre } from '../../data/Genre';
-import { Song } from '../../data/Song';
+import { Genre } from 'src/app/models/Genre';
+import { Song } from 'src/app/models/Song';
 import { ViewController } from '@ionic/core';
 
 @Component({

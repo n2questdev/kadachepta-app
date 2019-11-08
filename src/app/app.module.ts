@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicModule } from '@ionic/angular';
 import { AppComponent } from './app.component';
@@ -21,24 +21,24 @@ import {
 import { ComponentsFooterPlayerComponent } from './components/components-footer-player/components-footer-player';
 import { MusicControls } from '@ionic-native/music-controls';
 import { BackgroundMode } from '@ionic-native/background-mode';
-import { HomePage } from './pages/home/home';
-import { BrowsePage } from './pages/browse/browse';
-import { SearchPage } from './pages/search/search';
-import { LibraryPage } from './pages/library/library';
-import { TabsPage } from './pages/tabs/tabs';
-import { LoginPage } from './pages/login/login';
-import { PlaylistPage } from './pages/playlist/playlist';
-import { MusicPlayerPage } from './pages/music-player/music-player';
-import { ArtistPage } from './pages/artist/artist';
-import { AlbumPage } from './pages/album/album';
-import { FavoritesPage } from './pages/favorites/favorites';
-import { SettingsPage } from './pages/settings/settings';
-import { ProfilePage } from './pages/profile/profile';
-import { GenrePage } from './pages/genre/genre';
-import { LoginDetailsPage } from './pages/login-details/login-details';
+import { HomePage } from './pages/home/home.page';
+import { BrowsePage } from './pages/browse/browse.page';
+import { LibraryPage } from './pages/library/library.page';
+import { TabsPage } from './pages/tabs/tabs.page';
+import { LoginPage } from './pages/login/login.page';
+import { PlaylistPage } from './pages/playlist/playlist.page';
+import { MusicPlayerPage } from './pages/music-player/music-player.page';
+import { ArtistPage } from './pages/artist/artist.page';
+import { AlbumPage } from './pages/album/album.page';
+import { FavoritesPage } from './pages/favorites/favorites.page';
+import { SettingsPage } from './pages/settings/settings.page';
+import { ProfilePage } from './pages/profile/profile.page';
+import { GenrePage } from './pages/genre/genre.page';
+import { LoginDetailsPage } from './pages/login-details/login-details.page';
 import { AuthService } from './services/AuthService';
 import { FirestoreService } from './services/FirestoreService';
 import { AudioService } from './services/AudioService';
+import { SearchPageModule } from './pages/search/search.page';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -59,7 +59,7 @@ firebase.initializeApp(firebaseConfig);
     AppComponent,
     HomePage,
     BrowsePage,
-    SearchPage,
+    SearchPageModule,
     LibraryPage,
     TabsPage,
     LoginPage,
