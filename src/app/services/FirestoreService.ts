@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import firebase from 'firebase';
-
-import { Playlist } from '../data/Playlist';
-import { Song } from '../data/Song';
-import { Album } from '../data/Album';
-import { Artist } from '../data/Artist';
-import { SearchItem } from '../data/SearchItem';
-import { SearchItemType } from '../data/SearchItemType';
-import { PlaylistGroup } from '../data/PlaylistGroup';
-import { Genre } from '../data/Genre';
+import * as firebase from 'firebase/app';
+import { SearchItemType } from '../models/SearchItemType';
+import { Song } from '../models/Song';
+import { Album } from '../models/Album';
+import { Artist } from '../models/Artist';
+import { Playlist } from '../models/Playlist';
+import { PlaylistGroup } from '../models/PlaylistGroup';
+import { Genre } from '../models/Genre';
+import { SearchItem } from '../models/SearchItem';
 
 @Injectable()
 export class FirestoreService {
-  constructor() {}
+  constructor() { }
 
   addUser(user: firebase.User) {
     const promise = new Promise((resolve, reject) => {
@@ -26,10 +25,10 @@ export class FirestoreService {
           },
           { merge: true }
         )
-        .then(function() {
+        .then(function () {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -90,7 +89,7 @@ export class FirestoreService {
 
           resolve({ recentSearches: recentSearches });
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -117,10 +116,10 @@ export class FirestoreService {
           songUrl: song.songUrl,
           addedAt: firebase.firestore.FieldValue.serverTimestamp()
         })
-        .then(function() {
+        .then(function () {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -142,10 +141,10 @@ export class FirestoreService {
           picture: artist.picture,
           addedAt: firebase.firestore.FieldValue.serverTimestamp()
         })
-        .then(function() {
+        .then(function () {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -169,10 +168,10 @@ export class FirestoreService {
           artistName: album.artistName,
           addedAt: firebase.firestore.FieldValue.serverTimestamp()
         })
-        .then(function() {
+        .then(function () {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -192,7 +191,7 @@ export class FirestoreService {
         .then(() => {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -219,7 +218,7 @@ export class FirestoreService {
 
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -258,7 +257,7 @@ export class FirestoreService {
 
           resolve({ recentlyPlayed: recentlyPlayed });
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -284,10 +283,10 @@ export class FirestoreService {
           songUrl: song.songUrl,
           addedAt: firebase.firestore.FieldValue.serverTimestamp()
         })
-        .then(function() {
+        .then(function () {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.error(error);
           reject(error);
         });
@@ -563,7 +562,7 @@ export class FirestoreService {
 
           resolve({ isFollowing: false });
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -588,7 +587,7 @@ export class FirestoreService {
 
           resolve({ isFollowing: false });
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -613,7 +612,7 @@ export class FirestoreService {
 
           resolve({ isFollowing: false });
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -684,7 +683,7 @@ export class FirestoreService {
         .then(() => {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -751,7 +750,7 @@ export class FirestoreService {
 
           resolve({ favoriteSongs: favoriteSongs });
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -784,7 +783,7 @@ export class FirestoreService {
 
           resolve({ favoriteAlbums: favoriteAlbums });
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -815,7 +814,7 @@ export class FirestoreService {
 
           resolve({ favoriteArtists: favoriteArtists });
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -846,7 +845,7 @@ export class FirestoreService {
         .then(() => {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -866,7 +865,7 @@ export class FirestoreService {
         .then(() => {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -894,7 +893,7 @@ export class FirestoreService {
         .then(() => {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -914,7 +913,7 @@ export class FirestoreService {
         .then(() => {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -940,7 +939,7 @@ export class FirestoreService {
         .then(() => {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -960,7 +959,7 @@ export class FirestoreService {
         .then(() => {
           resolve();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           reject(error);
         });
     });
@@ -1061,7 +1060,7 @@ export class FirestoreService {
           genresSnapshot.forEach(doc => {
             const genre = new Genre(doc.data().name);
             genre.genreId = doc.id;
-            
+
             genres.push(genre);
           });
 
@@ -1071,7 +1070,7 @@ export class FirestoreService {
 
     return promise;
   }
-  
+
   getGenreSongs(genre: Genre) {
     const promise = new Promise((resolve, reject) => {
       const db = firebase.firestore();
