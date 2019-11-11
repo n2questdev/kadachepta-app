@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AlertController, Platform } from '@ionic/angular';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { TwitterConnect } from '@ionic-native/twitter-connect/ngx';
+import { AlertController, Platform } from '@ionic/angular';
 import * as firebase from 'firebase/app';
 
 

@@ -7,7 +7,7 @@ const routes: Array<any> = [
   {
     path: '',
     component: LoginPage,
-    outlet: 'about'
+    outlet: 'login'
   }
 ];
 

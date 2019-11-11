@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, NavParams } from '@ionic/angular';
 import { AuthService } from '../../services/AuthService';
 
 @Component({
@@ -26,37 +26,37 @@ export class LoginDetailsPage {
     console.log('ionViewDidLoad LoginDetailsPage');
   }
 
-  signIn(): void {
-    var loading = this.loadingCtrl.create({
+  async signIn() {
+    const loading = await this.loadingCtrl.create({
       spinner: 'bubbles',
-      content: 'Logging in...'
+      message: 'Logging in...'
     });
 
-    loading.present();
+    await loading.present();
 
     this.afService
       .signIn(this.loginData.email, this.loginData.password)
       .then(x => {
         loading.dismiss();
       })
-      .catch(error => {
+      .catch(async error => {
         loading.dismiss();
         console.log(error);
 
-        let alert = this.alertCtrl.create({
-          title: 'Log In Error',
-          subTitle: error.message,
+        const alert = await this.alertCtrl.create({
+          header: 'Log In Error',
+          subHeader: error.message,
           buttons: ['Dismiss']
         });
 
-        alert.present();
+        return await alert.present();
       });
   }
 
-  signUp(): void {
-    var loading = this.loadingCtrl.create({
+  async signUp() {
+    const loading = await this.loadingCtrl.create({
       spinner: 'bubbles',
-      content: 'Signing up...'
+      message: 'Signing up...'
     });
 
     loading.present();
@@ -64,33 +64,31 @@ export class LoginDetailsPage {
     this.afService
       .registerUser(
         this.registerData.email,
-        this.registerData.password,
-        this.registerData.password2
-      )
+        this.registerData.password      )
       .then(x => {
         loading.dismiss();
       })
-      .catch(error => {
+      .catch(async error => {
         loading.dismiss();
 
-        let alert = this.alertCtrl.create({
-          title: 'Sign Up Error',
-          subTitle: error.message,
+        const alert = await this.alertCtrl.create({
+          header: 'Sign Up Error',
+          subHeader: error.message,
           buttons: ['Dismiss']
         });
 
-        alert.present();
+        return await alert.present();
       });
   }
 
   forgotPassword(): void {
-    this.afService.forgotPassword(this.loginData.email).catch(error => {
-      let alert = this.alertCtrl.create({
-        title: 'Password Reset',
-        subTitle: 'Please enter your email.',
+    this.afService.forgotPassword(this.loginData.email).catch(async error => {
+      const alert = await this.alertCtrl.create({
+        header: 'Password Reset',
+        subHeader: 'Please enter your email.',
         buttons: ['Dismiss']
       });
-      alert.present();
+      return await alert.present();
     });
   }
 }

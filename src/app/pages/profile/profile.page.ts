@@ -1,24 +1,14 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import {
-  ActionSheetController,
-  NavController,
-  LoadingController,
-  Events
-} from '@ionic/angular';
-
-import firebase from 'firebase';
-
+import { ActionSheetController, Events, LoadingController, ModalController, NavController } from '@ionic/angular';
+import * as firebase from 'firebase';
+import { AppModule } from 'src/app/app.module';
+import { Song } from 'src/app/models/Song';
+import { AudioService } from '../../services/AudioService';
 import { AuthService } from '../../services/AuthService';
 import { FirestoreService } from '../../services/FirestoreService';
-import { AudioService } from '../../services/AudioService';
-
 import { AlbumPage } from '../album/album.page';
 import { ArtistPage } from '../artist/artist.page';
-
 import { LoginPage } from '../login/login.page';
-import { ViewController } from '@ionic/core';
-import { Song } from 'src/app/models/Song';
-import { AppModule } from 'src/app/app.module';
 
 @Component({
   selector: 'page-profile',
@@ -36,7 +26,7 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private viewCtrl: ViewController,
+    private modalCtrl: ModalController,
     private actionSheetCtrl: ActionSheetController,
     private loadingCtrl: LoadingController,
     private authService: AuthService,
@@ -117,9 +107,9 @@ export class ProfilePage implements OnInit {
     }
   }
 
-  songActionSheet(song: Song) {
-    const actionSheet = this.actionSheetCtrl.create({
-      title: song.name + ' ⚬ ' + song.artistName,
+  async songActionSheet(song: Song) {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: song.name + ' ⚬ ' + song.artistName,
       buttons: [
         {
           text: 'View Album',
@@ -140,7 +130,7 @@ export class ProfilePage implements OnInit {
       ]
     });
 
-    actionSheet.present();
+    return await actionSheet.present();
   }
 
   gotToAlbum(song: Song) {
@@ -152,13 +142,13 @@ export class ProfilePage implements OnInit {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.modalCtrl.dismiss();
   }
 
-  signOut() {
-    const loading = this.loadingCtrl.create({
+  async signOut() {
+    const loading = await this.loadingCtrl.create({
       spinner: 'bubbles',
-      content: 'Logging out...'
+      message: 'Logging out...'
     });
 
     loading.present();
@@ -177,6 +167,5 @@ export class ProfilePage implements OnInit {
         });
     }, 500);
   }
-  ngOnInit() {
-  }
+  ngOnInit() { }
 }

@@ -1,18 +1,11 @@
 import { Component } from '@angular/core';
-import {
-  NavController,
-  NavParams,
-  ToastController
-} from '@ionic/angular';
-
-import { FirestoreService } from '../../services/FirestoreService';
-import { AuthService } from '../../services/AuthService';
-
-import { AlbumPage } from '../album/album.page';
-
+import { NavController, NavParams, ToastController } from '@ionic/angular';
 import { ViewController } from '@ionic/core';
 import { Album } from 'src/app/models/Album';
 import { Artist } from 'src/app/models/Artist';
+import { AuthService } from '../../services/AuthService';
+import { FirestoreService } from '../../services/FirestoreService';
+import { AlbumPage } from '../album/album.page';
 
 @Component({
   selector: 'page-artist',

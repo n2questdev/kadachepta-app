@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { SearchItemType } from '../models/SearchItemType';
-import { Song } from '../models/Song';
 import { Album } from '../models/Album';
 import { Artist } from '../models/Artist';
+import { Genre } from '../models/Genre';
 import { Playlist } from '../models/Playlist';
 import { PlaylistGroup } from '../models/PlaylistGroup';
-import { Genre } from '../models/Genre';
 import { SearchItem } from '../models/SearchItem';
+import { SearchItemType } from '../models/SearchItemType';
+import { Song } from '../models/Song';
 
 @Injectable()
 export class FirestoreService {

@@ -1,18 +1,15 @@
 import { Component } from '@angular/core';
-import { NavController, ActionSheetController, Events } from '@ionic/angular';
-
+import { ActionSheetController, Events, NavController } from '@ionic/angular';
+import { FavoriteType } from 'src/app/models/FavoriteType';
+import { Song } from 'src/app/models/Song';
+import { AudioService } from '../../services/AudioService';
 import { AuthService } from '../../services/AuthService';
 import { FirestoreService } from '../../services/FirestoreService';
-import { AudioService } from '../../services/AudioService';
-
-import { ProfilePage } from '../profile/profile.page';
 import { AlbumPage } from '../album/album.page';
 import { ArtistPage } from '../artist/artist.page';
-import { SettingsPage } from '../settings/settings.page';
 import { FavoritesPage } from '../favorites/favorites.page';
-
-import { Song } from '../../data/Song';
-import { FavoriteType } from '../../data/FavoriteType';
+import { ProfilePage } from '../profile/profile.page';
+import { SettingsPage } from '../settings/settings.page';
 
 @Component({
   selector: 'page-library',
@@ -131,9 +128,9 @@ export class LibraryPage {
     this.navCtrl.push(ProfilePage);
   }
 
-  songActionSheet(song: Song) {
-    const actionSheet = this.actionSheetCtrl.create({
-      title: song.name + ' ⚬ ' + song.artistName,
+  async songActionSheet(song: Song) {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: song.name + ' ⚬ ' + song.artistName,
       buttons: [
         {
           text: 'View Album',
@@ -154,7 +151,7 @@ export class LibraryPage {
       ]
     });
 
-    actionSheet.present();
+    return await actionSheet.present();
   }
 
   gotToAlbum(song: Song) {

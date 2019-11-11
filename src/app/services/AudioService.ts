@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AudioProvider } from '../components/ionic-audio';
 import { MusicControls } from '@ionic-native/music-controls/ngx';
-import { Platform, ToastController, Events } from '@ionic/angular';
+import { Events, Platform, ToastController } from '@ionic/angular';
+import { AudioProvider } from '../components/ionic-audio';
 
 @Injectable()
 export class AudioService {

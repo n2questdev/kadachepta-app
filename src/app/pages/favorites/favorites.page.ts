@@ -1,26 +1,18 @@
 import { Component } from '@angular/core';
-import {
-  NavController,
-  NavParams,
-  ActionSheetController,
-  Events
-} from '@ionic/angular';
-
-import { FirestoreService } from '../../services/FirestoreService';
-import { AuthService } from '../../services/AuthService';
-
-import { PlaylistPage } from '../playlist/playlist.page';
-import { AlbumPage } from '../album/album.page';
-import { ArtistPage } from '../artist/artist.page';
-
-import { FavoriteType } from 'src/app/models/FavoriteType';
-import { FavoriteItem } from 'src/app/models/FavoriteItem';
-import { Playlist } from 'src/app/models/Playlist';
-import { Song } from 'src/app/models/Song';
+import { ActionSheetController, Events, NavController, NavParams } from '@ionic/angular';
+import { ViewController } from '@ionic/core';
 import { Album } from 'src/app/models/Album';
 import { Artist } from 'src/app/models/Artist';
+import { FavoriteItem } from 'src/app/models/FavoriteItem';
+import { FavoriteType } from 'src/app/models/FavoriteType';
+import { Playlist } from 'src/app/models/Playlist';
+import { Song } from 'src/app/models/Song';
 import { AudioService } from '../../services/AudioService';
-import { ViewController } from '@ionic/core';
+import { AuthService } from '../../services/AuthService';
+import { FirestoreService } from '../../services/FirestoreService';
+import { AlbumPage } from '../album/album.page';
+import { ArtistPage } from '../artist/artist.page';
+import { PlaylistPage } from '../playlist/playlist.page';
 
 @Component({
   selector: 'page-favorites',

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { ActionSheetController, NavController } from '@ionic/angular';
-
-import { ViewController } from '@ionic/core';
+import { ActionSheetController, ModalController, NavController } from '@ionic/angular';
 import { Song } from 'src/app/models/Song';
 import { AudioService } from 'src/app/services/AudioService';
-import { FirestoreService } from 'src/app/services/FirestoreService';
 import { AuthService } from 'src/app/services/AuthService';
+import { FirestoreService } from 'src/app/services/FirestoreService';
+import { AlbumPage } from '../album/album.page';
+import { ArtistPage } from '../artist/artist.page';
 
 @Component({
   selector: 'page-music-player',
@@ -19,7 +19,7 @@ export class MusicPlayerPage {
 
   constructor(
     private navCtrl: NavController,
-    private viewCtrl: ViewController,
+    private modalCtrl: ModalController,
     private audioService: AudioService,
     private actionSheetCtrl: ActionSheetController,
     private firestoreService: FirestoreService,
@@ -86,11 +86,11 @@ export class MusicPlayerPage {
     this.getSong();
   }
 
-  songActionSheet() {
+  async songActionSheet() {
     const playingTrack = this.audioService.playingTrack();
 
-    const actionSheet = this.actionSheetCtrl.create({
-      title: playingTrack.title + ' ⚬ ' + playingTrack.artist,
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: playingTrack.title + ' ⚬ ' + playingTrack.artist,
       buttons: [
         {
           text: 'View Album',
@@ -111,7 +111,7 @@ export class MusicPlayerPage {
       ]
     });
 
-    actionSheet.present();
+    return await actionSheet.present();
   }
 
   gotToAlbum(albumId: string) {
@@ -123,6 +123,6 @@ export class MusicPlayerPage {
   }
 
   close() {
-    this.viewCtrl.dismiss();
+    this.modalCtrl.dismiss();
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
 const routes: Routes = [
   {
@@ -18,3 +18,5 @@ const routes: Routes = [
   ],
 })
 export class SearchPage {}
+
+

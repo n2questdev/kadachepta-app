@@ -1,22 +1,12 @@
 import { Component } from '@angular/core';
-import {
-  NavController,
-  NavParams,
-  ActionSheetController,
-  ToastController,
-  Events
-} from '@ionic/angular';
-
-import { FirestoreService } from '../../services/FirestoreService';
-import { AudioService } from '../../services/AudioService';
-import { AuthService } from '../../services/AuthService';
-
-import { AlbumPage } from '../album/album.page';
-import { ArtistPage } from '../artist/artist.page';
-
-import { ViewController } from '@ionic/core';
+import { ActionSheetController, Events, ModalController, NavController, NavParams, ToastController } from '@ionic/angular';
 import { Playlist } from 'src/app/models/Playlist';
 import { Song } from 'src/app/models/Song';
+import { AudioService } from '../../services/AudioService';
+import { AuthService } from '../../services/AuthService';
+import { FirestoreService } from '../../services/FirestoreService';
+import { AlbumPage } from '../album/album.page';
+import { ArtistPage } from '../artist/artist.page';
 
 @Component({
   selector: 'page-playlist',
@@ -36,7 +26,7 @@ export class PlaylistPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private viewCtrl: ViewController,
+    private modalCtrl: ModalController,
     private toastCtrl: ToastController,
     private firestoreService: FirestoreService,
     private actionSheetCtrl: ActionSheetController,
@@ -109,14 +99,14 @@ export class PlaylistPage {
       });
   }
 
-  showToast(message: string) {
-    const toast = this.toastCtrl.create({
+  async showToast(message: string) {
+    const toast = await this.toastCtrl.create({
       message: message,
       duration: 1000,
       position: 'bottom'
     });
 
-    toast.present();
+    return await toast.present();
   }
 
   getPlaylistSongs() {
@@ -156,9 +146,9 @@ export class PlaylistPage {
     }
   }
 
-  playlistSongActionSheet(song: Song) {
-    const actionSheet = this.actionSheetCtrl.create({
-      title: song.name + ' ⚬ ' + song.artistName,
+  async playlistSongActionSheet(song: Song) {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: song.name + ' ⚬ ' + song.artistName,
       buttons: [
         {
           text: 'View Album',
@@ -179,7 +169,7 @@ export class PlaylistPage {
       ]
     });
 
-    actionSheet.present();
+    return await actionSheet.present();
   }
 
   gotToAlbum(song: Song) {
@@ -191,6 +181,6 @@ export class PlaylistPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.modalCtrl.dismiss();
   }
 }

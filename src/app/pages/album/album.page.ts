@@ -1,21 +1,11 @@
 import { Component } from '@angular/core';
-import {
-  NavController,
-  NavParams,
-  ActionSheetController,
-  ToastController,
-  Events
-} from '@ionic/angular';
-
-import { FirestoreService } from '../../services/FirestoreService';
-import { AudioService } from '../../services/AudioService';
-import { AuthService } from '../../services/AuthService';
-
-import { ArtistPage } from '../artist/artist.page';
-
-import { ViewController } from '@ionic/core';
+import { ActionSheetController, Events, ModalController, NavController, NavParams, ToastController } from '@ionic/angular';
 import { Album } from 'src/app/models/Album';
 import { Song } from 'src/app/models/Song';
+import { AudioService } from '../../services/AudioService';
+import { AuthService } from '../../services/AuthService';
+import { FirestoreService } from '../../services/FirestoreService';
+import { ArtistPage } from '../artist/artist.page';
 
 @Component({
   selector: 'page-album',
@@ -36,7 +26,7 @@ export class AlbumPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private viewCtrl: ViewController,
+    private modalCtrl: ModalController,
     private toastCtrl: ToastController,
     private firestoreService: FirestoreService,
     private actionSheetCtrl: ActionSheetController,
@@ -157,7 +147,7 @@ export class AlbumPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.modalCtrl.dismiss();
   }
 
   async songActionSheet(song: Song) {

@@ -1,21 +1,13 @@
 import { Component } from '@angular/core';
-import {
-  NavController,
-  NavParams,
-  ActionSheetController,
-  Events
-} from '@ionic/angular';
-
-import { FirestoreService } from '../../services/FirestoreService';
-import { AudioService } from '../../services/AudioService';
-import { AuthService } from '../../services/AuthService';
-
-import { AlbumPage } from '../album/album.page';
-import { ArtistPage } from '../artist/artist.page';
-
+import { ActionSheetController, Events, NavController, NavParams } from '@ionic/angular';
+import { ViewController } from '@ionic/core';
 import { Genre } from 'src/app/models/Genre';
 import { Song } from 'src/app/models/Song';
-import { ViewController } from '@ionic/core';
+import { AudioService } from '../../services/AudioService';
+import { AuthService } from '../../services/AuthService';
+import { FirestoreService } from '../../services/FirestoreService';
+import { AlbumPage } from '../album/album.page';
+import { ArtistPage } from '../artist/artist.page';
 
 @Component({
   selector: 'page-genre',

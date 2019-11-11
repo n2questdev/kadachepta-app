@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { FirestoreService } from 'src/app/services/FirestoreService';
-import { PlaylistGroup } from 'src/app/models/PlaylistGroup';
 import { Playlist } from 'src/app/models/Playlist';
+import { PlaylistGroup } from 'src/app/models/PlaylistGroup';
+import { FirestoreService } from 'src/app/services/FirestoreService';
 import { PlaylistPage } from '../playlist/playlist.page';
 
 @Component({
@@ -42,8 +42,8 @@ export class HomePage {
     });
   }
 
-  goToPlaylist(playlist: Playlist) {
-    const modal = this.modalCtrl.create(PlaylistPage, { playlist: playlist });
-    modal.present();
+  async goToPlaylist(playlist: Playlist) {
+    const modal = await this.modalCtrl.create(PlaylistPage, { playlist: playlist });
+    return await modal.present();
   }
 }

@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
-import { ViewController } from '@ionic/core';
+import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html'
 })
-export class SettingsPage {
-  constructor(private viewCtrl: ViewController) {}
+export class SettingsPage implements OnInit {
+  constructor(private modalCtrl: ModalController) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.modalCtrl.dismiss();
   }
+  ngOnInit() {}
 }

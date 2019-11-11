@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
-import {
-  NavController,
-  AlertController,
-  LoadingController,
-  Platform
-} from '@ionic/angular';
-
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { AlertController, LoadingController, NavController, Platform } from '@ionic/angular';
+import { AppModule } from 'src/app/app.module';
 import { AuthService } from 'src/app/services/AuthService';
 import { LoginDetailsPage } from '../login-details/login-details.page';
-import { AppModule } from 'src/app/app.module';
 
 @Component({
   selector: 'page-login',
@@ -26,7 +20,7 @@ export class LoginPage {
     private backgroundMode: BackgroundMode
   ) {
     this.platform.registerBackButtonAction(() => {
-      let activeNav = this.app.getActiveNav();
+      const activeNav = this.app.getActiveNav();
 
       if (activeNav.getActive().name === 'ModalCmp') {
         activeNav.getActive().dismiss();

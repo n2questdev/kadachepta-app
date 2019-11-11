@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from '@ionic/angular';
-import { PlaylistGroup } from 'src/app/models/PlaylistGroup';
+import { ModalController, NavController } from '@ionic/angular';
 import { Genre } from 'src/app/models/Genre';
-import { FirestoreService } from 'src/app/services/FirestoreService';
-import { Randomizer } from 'src/app/models/Randomizer';
 import { GenreHelper } from 'src/app/models/GenreHelper';
 import { Playlist } from 'src/app/models/Playlist';
+import { PlaylistGroup } from 'src/app/models/PlaylistGroup';
+import { Randomizer } from 'src/app/models/Randomizer';
+import { FirestoreService } from 'src/app/services/FirestoreService';
 import { PlaylistPage } from '../playlist/playlist.page';
 
 @Component({
