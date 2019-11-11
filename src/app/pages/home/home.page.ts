@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Playlist } from 'src/app/models/Playlist';
 import { PlaylistGroup } from 'src/app/models/PlaylistGroup';
@@ -9,7 +9,7 @@ import { PlaylistPage } from '../playlist/playlist.page';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit {
   playlistGroups: PlaylistGroup[] = [];
   playingTrack: any;
 
@@ -46,4 +46,5 @@ export class HomePage {
     const modal = await this.modalCtrl.create(PlaylistPage, { playlist: playlist });
     return await modal.present();
   }
+  ngOnInit() {}
 }

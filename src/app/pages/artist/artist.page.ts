@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from '@ionic/angular';
-import { ViewController } from '@ionic/core';
+import { Component, OnInit } from '@angular/core';
+import { NavController, NavParams, ToastController, ModalController } from '@ionic/angular';
 import { Album } from 'src/app/models/Album';
 import { Artist } from 'src/app/models/Artist';
 import { AuthService } from '../../services/AuthService';
@@ -11,7 +10,7 @@ import { AlbumPage } from '../album/album.page';
   selector: 'page-artist',
   templateUrl: 'artist.html'
 })
-export class ArtistPage {
+export class ArtistPage implements OnInit{
   userId: string;
   isFollowing = false;
 
@@ -25,7 +24,7 @@ export class ArtistPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private viewCtrl: ViewController,
+    private modelCtrl: ModalController,
     private toastCtrl: ToastController,
     private firestoreService: FirestoreService,
     private authService: AuthService
@@ -74,14 +73,14 @@ export class ArtistPage {
     });
   }
 
-  showToast(message: string) {
-    const toast = this.toastCtrl.create({
+  async showToast(message: string) {
+    const toast = await this.toastCtrl.create({
       message: message,
       duration: 1000,
       position: 'bottom'
     });
 
-    toast.present();
+    return await toast.present();
   }
 
   getArtist() {
@@ -99,10 +98,11 @@ export class ArtistPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.modelCtrl.dismiss();
   }
 
   viewAlbum(album: Album) {
     this.navCtrl.push(AlbumPage, { albumId: album.albumId });
   }
+  ngOnInit() {}
 }

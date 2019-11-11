@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, Events, NavController } from '@ionic/angular';
 import { FavoriteType } from 'src/app/models/FavoriteType';
 import { Song } from 'src/app/models/Song';
@@ -15,7 +15,7 @@ import { SettingsPage } from '../settings/settings.page';
   selector: 'page-library',
   templateUrl: 'library.html'
 })
-export class LibraryPage {
+export class LibraryPage implements OnInit {
   userId: string;
   userPicture: string;
 
@@ -161,4 +161,5 @@ export class LibraryPage {
   goToArtist(song: Song) {
     this.navCtrl.push(ArtistPage, { artistId: song.artistId });
   }
+  ngOnInit() {}
 }

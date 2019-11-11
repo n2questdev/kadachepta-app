@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { ActionSheetController, Events, NavController, NavParams } from '@ionic/angular';
-import { ViewController } from '@ionic/core';
+import { Component, OnInit } from '@angular/core';
+import { ActionSheetController, Events, ModalController, NavController, NavParams } from '@ionic/angular';
 import { Album } from 'src/app/models/Album';
 import { Artist } from 'src/app/models/Artist';
 import { FavoriteItem } from 'src/app/models/FavoriteItem';
@@ -18,7 +17,7 @@ import { PlaylistPage } from '../playlist/playlist.page';
   selector: 'page-favorites',
   templateUrl: 'favorites.html'
 })
-export class FavoritesPage {
+export class FavoritesPage implements OnInit {
   userId: string;
 
   favoriteType: FavoriteType;
@@ -33,7 +32,7 @@ export class FavoritesPage {
 
   constructor(
     private navCtrl: NavController,
-    private viewCtrl: ViewController,
+    private modalCtrl: ModalController,
     private actionSheetCtrl: ActionSheetController,
     private navParams: NavParams,
     private firestoreService: FirestoreService,
@@ -178,7 +177,7 @@ export class FavoritesPage {
       });
   }
 
-  favoriteActionSheet(favoriteItem: FavoriteItem) {
+  async favoriteActionSheet(favoriteItem: FavoriteItem) {
     let text = '';
 
     switch (this.favoriteType) {
@@ -199,8 +198,8 @@ export class FavoritesPage {
         break;
     }
 
-    const actionSheet = this.actionSheetCtrl.create({
-      title: favoriteItem.name,
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: favoriteItem.name,
       buttons: [
         {
           text: text,
@@ -229,7 +228,7 @@ export class FavoritesPage {
       ]
     });
 
-    actionSheet.present();
+    return await actionSheet.present();
   }
 
   unfollowPlaylist(favoriteItem: FavoriteItem) {
@@ -376,6 +375,7 @@ export class FavoritesPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.modalCtrl.dismiss();
   }
+  ngOnInit() {}
 }

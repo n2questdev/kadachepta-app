@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, Events, ModalController, NavController, NavParams, ToastController } from '@ionic/angular';
 import { Playlist } from 'src/app/models/Playlist';
 import { Song } from 'src/app/models/Song';
@@ -12,7 +12,7 @@ import { ArtistPage } from '../artist/artist.page';
   selector: 'page-playlist',
   templateUrl: 'playlist.html'
 })
-export class PlaylistPage {
+export class PlaylistPage implements OnInit {
   userId: string;
   isFollowing = false;
 
@@ -183,4 +183,5 @@ export class PlaylistPage {
   dismiss() {
     this.modalCtrl.dismiss();
   }
+  ngOnInit() {}
 }

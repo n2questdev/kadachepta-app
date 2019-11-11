@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, NavParams } from '@ionic/angular';
 import { AuthService } from '../../services/AuthService';
 
@@ -6,7 +6,7 @@ import { AuthService } from '../../services/AuthService';
   selector: 'page-login-details',
   templateUrl: 'login-details.html'
 })
-export class LoginDetailsPage {
+export class LoginDetailsPage implements OnInit {
   isLogin: boolean;
   loginData: any;
   registerData: any;
@@ -91,4 +91,5 @@ export class LoginDetailsPage {
       return await alert.present();
     });
   }
+  ngOnInit() {}
 }

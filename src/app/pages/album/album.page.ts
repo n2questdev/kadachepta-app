@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, Events, ModalController, NavController, NavParams, ToastController } from '@ionic/angular';
 import { Album } from 'src/app/models/Album';
 import { Song } from 'src/app/models/Song';
@@ -11,7 +11,7 @@ import { ArtistPage } from '../artist/artist.page';
   selector: 'page-album',
   templateUrl: 'album.html'
 })
-export class AlbumPage {
+export class AlbumPage implements OnInit {
   userId: string;
   isFollowing = false;
 
@@ -171,4 +171,5 @@ export class AlbumPage {
   goToArtist(song: Song) {
     this.navCtrl.push(ArtistPage, { artistId: song.artistId });
   }
+  ngOnInit() {}
 }

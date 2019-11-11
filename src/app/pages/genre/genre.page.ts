@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ActionSheetController, Events, NavController, NavParams } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { ActionSheetController, Events, NavController, NavParams, ModalController } from '@ionic/angular';
 import { ViewController } from '@ionic/core';
 import { Genre } from 'src/app/models/Genre';
 import { Song } from 'src/app/models/Song';
@@ -13,7 +13,7 @@ import { ArtistPage } from '../artist/artist.page';
   selector: 'page-genre',
   templateUrl: 'genre.html'
 })
-export class GenrePage {
+export class GenrePage implements OnInit {
   userId: string;
 
   genre: Genre;
@@ -25,7 +25,7 @@ export class GenrePage {
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
-    private viewCtrl: ViewController,
+    private modalCtrl: ModalController,
     private actionSheetCtrl: ActionSheetController,
     private firestoreService: FirestoreService,
     private audioService: AudioService,
@@ -104,12 +104,12 @@ export class GenrePage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.modalCtrl.dismiss();
   }
 
-  songActionSheet(song: Song) {
-    const actionSheet = this.actionSheetCtrl.create({
-      title: song.name + ' ⚬ ' + song.artistName,
+  async songActionSheet(song: Song) {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: song.name + ' ⚬ ' + song.artistName,
       buttons: [
         {
           text: 'View Album',
@@ -130,7 +130,7 @@ export class GenrePage {
       ]
     });
 
-    actionSheet.present();
+    return await actionSheet.present();
   }
 
   gotToAlbum(song: Song) {
@@ -140,4 +140,5 @@ export class GenrePage {
   goToArtist(song: Song) {
     this.navCtrl.push(ArtistPage, { artistId: song.artistId });
   }
+  ngOnInit() {}
 }

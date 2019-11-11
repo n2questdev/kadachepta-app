@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { AlertController, LoadingController, NavController, Platform } from '@ionic/angular';
 import { AppModule } from 'src/app/app.module';
@@ -9,7 +9,7 @@ import { LoginDetailsPage } from '../login-details/login-details.page';
   selector: 'page-login',
   templateUrl: 'login.html'
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
   constructor(
     private app: AppModule,
     private navCtrl: NavController,
@@ -209,4 +209,5 @@ export class LoginPage {
       return await alert.present();
     });
   }
+  ngOnInit() {}
 }

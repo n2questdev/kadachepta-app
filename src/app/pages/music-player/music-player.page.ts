@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, ModalController, NavController } from '@ionic/angular';
 import { Song } from 'src/app/models/Song';
 import { AudioService } from 'src/app/services/AudioService';
@@ -11,7 +11,7 @@ import { ArtistPage } from '../artist/artist.page';
   selector: 'page-music-player',
   templateUrl: 'music-player.html'
 })
-export class MusicPlayerPage {
+export class MusicPlayerPage implements OnInit {
   userId: string;
   isLiked = false;
   playingSong: Song;
@@ -125,4 +125,6 @@ export class MusicPlayerPage {
   close() {
     this.modalCtrl.dismiss();
   }
+  
+  ngOnInit() {}
 }

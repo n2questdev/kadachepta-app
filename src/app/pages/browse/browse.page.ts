@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { Genre } from 'src/app/models/Genre';
 import { GenreHelper } from 'src/app/models/GenreHelper';
@@ -6,13 +6,14 @@ import { Playlist } from 'src/app/models/Playlist';
 import { PlaylistGroup } from 'src/app/models/PlaylistGroup';
 import { Randomizer } from 'src/app/models/Randomizer';
 import { FirestoreService } from 'src/app/services/FirestoreService';
+import { GenrePage } from '../genre/genre.page';
 import { PlaylistPage } from '../playlist/playlist.page';
 
 @Component({
   selector: 'page-browse',
   templateUrl: 'browse.html'
 })
-export class BrowsePage {
+export class BrowsePage implements OnInit {
   playlistGroup: PlaylistGroup = new PlaylistGroup();
   genres: Genre[] = [];
 
@@ -67,12 +68,14 @@ export class BrowsePage {
     });
   }
 
-  goToPlaylist(playlist: Playlist) {
-    const modal = this.modalCtrl.create(PlaylistPage, { playlist: playlist });
-    modal.present();
+  async goToPlaylist(playlist: Playlist) {
+    const modal = await this.modalCtrl.create(PlaylistPage, { playlist: playlist });
+    return await modal.present();
   }
 
   goToGenre(genre: Genre) {
     this.navCtrl.push(GenrePage, { genre: genre });
   }
+
+  ngOnInit() {}
 }
