@@ -29,162 +29,140 @@ export class AuthService {
     });
   }
 
-  signInWithFacebookPlugin() {
+  async signInWithFacebookPlugin() {
     if (this.platform.is('cordova')) {
-      return this.fb
-        .login(['email'])
-        .then(res => {
-          const facebookCredential = firebase.auth.FacebookAuthProvider.credential(
-            res.authResponse.accessToken
-          );
-
-          firebase
-            .auth()
-            .signInWithCredential(facebookCredential)
-            .then(
-              res => {},
-              err => {
-                console.error('Error: ', err);
-                throw err;
-              }
-            );
-        })
-        .catch(error => {
-          throw error;
-        });
+      try {
+        const res = await this.fb
+          .login(['email']);
+        const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+        firebase
+          .auth()
+          .signInWithCredential(facebookCredential)
+          .then(() => { }, err => {
+            console.error('Error: ', err);
+            throw err;
+          });
+      } catch (error) {
+        throw error;
+      }
     } else {
       return this.signInWithFacebookWeb();
     }
   }
 
-  signInWithFacebookWeb() {
-    return this.afAuth.auth
-      .signInWithPopup(new firebase.auth.FacebookAuthProvider())
-      .then(
-        res => {},
-        err => {
-          console.error('Error: ', err);
-          throw err;
-        }
-      );
+  async signInWithFacebookWeb() {
+    try {
+      await this
+        .afAuth
+        .auth
+        .signInWithPopup(new firebase.auth.FacebookAuthProvider());
+    } catch (err) {
+      console.error('Error: ', err);
+      throw err;
+    }
   }
 
-  signInWithGooglePlugin() {
+  async signInWithGooglePlugin() {
     if (this.platform.is('cordova')) {
-      return this.googlePlus
-        .login({
-          webClientId:
-            '395983984847-84m1jgom088b1d8jdn36v6rspaov5nhp.apps.googleusercontent.com',
-          offline: true
-        })
-        .then(
-          res => {
-            const googleCredential = firebase.auth.GoogleAuthProvider.credential(
-              res.idToken
-            );
-
-            firebase
-              .auth()
-              .signInWithCredential(googleCredential)
-              .then(response => {
-                console.log('Firebase success: ' + JSON.stringify(response));
-              });
-          },
-          err => {
-            console.error('Error: ', err);
-            throw err;
-          }
-        );
+      try {
+        const res = await this.googlePlus
+          .login({
+            webClientId: '395983984847-84m1jgom088b1d8jdn36v6rspaov5nhp.apps.googleusercontent.com',
+            offline: true
+          });
+        const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
+        firebase
+          .auth()
+          .signInWithCredential(googleCredential)
+          .then(response => {
+            console.log('Firebase success: ' + JSON.stringify(response));
+          });
+      } catch (err) {
+        console.error('Error: ', err);
+        throw err;
+      }
     } else {
       return this.signInWithGoogleWeb();
     }
   }
 
-  signInWithGoogleWeb() {
-    return this.afAuth.auth
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(
-        res => {},
-        err => {
-          console.error('Error: ', err);
-          throw err;
-        }
-      );
+  async signInWithGoogleWeb() {
+    try {
+      await this.afAuth.auth
+        .signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    } catch (err) {
+      console.error('Error: ', err);
+      throw err;
+    }
   }
 
-  signInWithTwitterPlugin() {
+  async signInWithTwitterPlugin() {
     if (this.platform.is('cordova')) {
-      return this.twitter.login().then(
-        function(result) {
-          console.log('Successful login!');
-          console.log(result);
-        },
-        function(error) {
-          console.error('Error logging in');
-          console.error(error);
-          throw error;
-        }
-      );
+      try {
+        const result = await this.twitter.login();
+        console.log('Successful login!');
+        console.log(result);
+      } catch (error) {
+        console.error('Error logging in');
+        console.error(error);
+        throw error;
+      }
     } else {
       return this.signInWithTwitterWeb();
     }
   }
 
-  signInWithTwitterWeb() {
-    return this.afAuth.auth
-      .signInWithPopup(new firebase.auth.TwitterAuthProvider())
-      .then(
-        res => {},
-        err => {
-          console.error('Error: ', err);
-          throw err;
-        }
-      );
+  async signInWithTwitterWeb() {
+    try {
+      await this.afAuth.auth
+        .signInWithPopup(new firebase.auth.TwitterAuthProvider());
+    } catch (err) {
+      console.error('Error: ', err);
+      throw err;
+    }
   }
 
-  signInWithGithub() {
-    return this.afAuth.auth
-      .signInWithPopup(new firebase.auth.GithubAuthProvider())
-      .then(res => {});
+  async signInWithGithub() {
+    await this.afAuth.auth
+      .signInWithPopup(new firebase.auth.GithubAuthProvider());
   }
 
-  registerUser(email, password, password2) {
-    return this.afAuth.auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(res => {})
-      .catch(error => {
-        throw error;
-      });
+  async registerUser(email, password) {
+    try {
+      await this.afAuth.auth
+        .createUserWithEmailAndPassword(email, password);
+    } catch (error) {
+      throw error;
+    }
   }
 
-  signIn(email, password) {
-    return this.afAuth.auth
-      .signInWithEmailAndPassword(email, password)
-      .then(res => {})
-      .catch(error => {
-        throw error;
-      });
+  async signIn(email, password) {
+    try {
+      await this.afAuth.auth
+        .signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      throw error;
+    }
   }
 
   signOut(): void {
     firebase.auth().signOut();
   }
 
-  forgotPassword(email) {
-    return firebase
-      .app()
-      .auth()
-      .sendPasswordResetEmail(email)
-      .then(async s => {
-        const alert = await this.alertCtrl.create({
-          header: 'Password Reset',
-          subHeader: 'Check your inbox to reset your password',
-          buttons: ['Dismiss']
-        });
-        await alert.present();
-      })
-      .catch(error => {
-        throw error;
+  async forgotPassword(email: string) {
+    try {
+      await firebase
+        .app()
+        .auth()
+        .sendPasswordResetEmail(email);
+      const alert = await this.alertCtrl.create({
+        header: 'Password Reset',
+        subHeader: 'Check your inbox to reset your password',
+        buttons: ['Dismiss']
       });
+      await alert.present();
+    } catch (error) {
+      throw error;
+    }
   }
 }

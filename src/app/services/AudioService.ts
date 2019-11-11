@@ -68,7 +68,7 @@ export class AudioService {
   }
 
   next() {
-    if (this.audioProvider.current != undefined) {
+    if (this.audioProvider.current !== undefined) {
       if (this.isShuffle) {
         // loop until find appropriate random index
         while (true) {
@@ -201,7 +201,8 @@ export class AudioService {
       track: track.title, // optional, default : ''
       artist: track.artist, // optional, default : ''
       cover: track.art, // optional, default : nothing
-      // cover can be a local path (use fullpath 'file:///storage/emulated/...', or only 'my_image.jpg' if my_image.jpg is in the www folder of your app)
+      // cover can be a local path (use fullpath 'file:///storage/emulated/...',
+      // or only 'my_image.jpg' if my_image.jpg is in the www folder of your app)
       //           or a remote url ('http://...', 'https://...', 'ftp://...')
       isPlaying: true, // optional, default : true
       dismissable: true, // optional, default : false
