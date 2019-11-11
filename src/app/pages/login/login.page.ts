@@ -6,7 +6,7 @@ import {
   Platform
 } from '@ionic/angular';
 
-import { BackgroundMode } from '@ionic-native/background-mode';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { AuthService } from 'src/app/services/AuthService';
 import { LoginDetailsPage } from '../login-details/login-details.page';
 import { AppModule } from 'src/app/app.module';
@@ -50,10 +50,10 @@ export class LoginPage {
     this.navCtrl.push(LoginDetailsPage, { isLogin: false });
   }
 
-  signInWithFacebook() {
-    var loading = this.loadingCtrl.create({
+  async signInWithFacebook() {
+    const loading = await this.loadingCtrl.create({
       spinner: 'bubbles',
-      content: 'Logging in with Facebook...'
+      message: 'Logging in with Facebook...'
     });
 
     loading.present();
@@ -65,7 +65,7 @@ export class LoginPage {
       })
       .catch(error => {
         // Known Ionic View restriction
-        if (error == 'plugin_not_installed') {
+        if (error === 'plugin_not_installed') {
           this.showIonicViewErrorMessage().then(() => {
             this.authService
               .signInWithFacebookWeb()
@@ -84,10 +84,10 @@ export class LoginPage {
       });
   }
 
-  signInWithGoogle(): void {
-    var loading = this.loadingCtrl.create({
+  async signInWithGoogle() {
+    const loading = await this.loadingCtrl.create({
       spinner: 'bubbles',
-      content: 'Logging in with Google...'
+      message: 'Logging in with Google...'
     });
 
     loading.present();
@@ -99,7 +99,7 @@ export class LoginPage {
       })
       .catch(error => {
         // Known Ionic View restriction
-        if (error == 'plugin_not_installed') {
+        if (error === 'plugin_not_installed') {
           this.showIonicViewErrorMessage().then(() => {
             this.authService
               .signInWithGoogleWeb()
@@ -118,10 +118,10 @@ export class LoginPage {
       });
   }
 
-  signInWithTwitter(): void {
-    var loading = this.loadingCtrl.create({
+  async signInWithTwitter() {
+    const loading = await this.loadingCtrl.create({
       spinner: 'bubbles',
-      content: 'Logging in with Twitter...'
+      message: 'Logging in with Twitter...'
     });
 
     loading.present();
@@ -153,10 +153,10 @@ export class LoginPage {
   }
 
   showIonicViewErrorMessage() {
-    return new Promise((resolve) => {
-      let alert = this.alertCtrl.create({
-        title: 'Ionic View Login Error',
-        subTitle:
+    return new Promise(async (resolve) => {
+      const alert = await this.alertCtrl.create({
+        header: 'Ionic View Login Error',
+        subHeader:
           'Ionic View does not currently support this login plugin. Logging in using web...',
         buttons: [
           {
@@ -170,49 +170,49 @@ export class LoginPage {
         ]
       });
 
-      alert.present();
+      return await alert.present();
     });
   }
 
-  handleFacebookLoginError(error) {
-    let alert = this.alertCtrl.create({
-      title: 'Facebook Login Error',
-      subTitle: error,
+  async handleFacebookLoginError(error: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Facebook Login Error',
+      subHeader: error,
       buttons: ['Dismiss']
     });
 
-    alert.present();
+    return await alert.present();
   }
 
-  handleGoogleLoginError(error) {
-    let alert = this.alertCtrl.create({
-      title: 'Google Login Error',
-      subTitle: error,
+  async handleGoogleLoginError(error: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Google Login Error',
+      subHeader: error,
       buttons: ['Dismiss']
     });
 
-    alert.present();
+    return await alert.present();
   }
 
-  handleTwitterLoginError(error) {
-    let alert = this.alertCtrl.create({
-      title: 'Twitter Login Error',
-      subTitle: error,
+  async handleTwitterLoginError(error: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Twitter Login Error',
+      subHeader: error,
       buttons: ['Dismiss']
     });
 
-    alert.present();
+    return await alert.present();
   }
 
   signInWithGithub(): void {
-    this.authService.signInWithGithub().catch(error => {
-      let alert = this.alertCtrl.create({
-        title: 'Github Login Error',
-        subTitle: error.message,
+    this.authService.signInWithGithub().catch(async error => {
+      const alert = await this.alertCtrl.create({
+        header: 'Github Login Error',
+        subHeader: error.message,
         buttons: ['Dismiss']
       });
 
-      alert.present();
+      return await alert.present();
     });
   }
 }

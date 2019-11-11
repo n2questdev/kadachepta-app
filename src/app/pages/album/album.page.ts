@@ -13,9 +13,9 @@ import { AuthService } from '../../services/AuthService';
 
 import { ArtistPage } from '../artist/artist.page';
 
-import { Song } from '../../data/Song';
-import { Album } from '../../data/Album';
 import { ViewController } from '@ionic/core';
+import { Album } from 'src/app/models/Album';
+import { Song } from 'src/app/models/Song';
 
 @Component({
   selector: 'page-album',
@@ -106,14 +106,14 @@ export class AlbumPage {
     });
   }
 
-  showToast(message: string) {
-    const toast = this.toastCtrl.create({
+  async showToast(message: string) {
+    const toast = await this.toastCtrl.create({
       message: message,
       duration: 1000,
       position: 'bottom'
     });
 
-    toast.present();
+    return await toast.present();
   }
 
   getAlbum() {
@@ -160,9 +160,9 @@ export class AlbumPage {
     this.viewCtrl.dismiss();
   }
 
-  songActionSheet(song: Song) {
-    const actionSheet = this.actionSheetCtrl.create({
-      title: song.name + ' ⚬ ' + song.artistName,
+  async songActionSheet(song: Song) {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: song.name + ' ⚬ ' + song.artistName,
       buttons: [
         {
           text: 'View Artist',
@@ -175,7 +175,7 @@ export class AlbumPage {
       ]
     });
 
-    actionSheet.present();
+    return await actionSheet.present();
   }
 
   goToArtist(song: Song) {

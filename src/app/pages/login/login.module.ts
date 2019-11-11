@@ -1,13 +1,21 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import { IonicModule } from '@ionic/angular';
 import { LoginPage } from './login.page';
+import { RouterModule } from '@angular/router';
+
+const routes: Array<any> = [
+  {
+    path: '',
+    component: LoginPage,
+    outlet: 'about'
+  }
+];
 
 @NgModule({
   declarations: [
     LoginPage,
   ],
-  imports: [
-    IonicPageModule.forChild(LoginPage),
-  ],
+  imports: [IonicModule, RouterModule.forChild(routes)]
+  ,
 })
 export class LoginPageModule {}

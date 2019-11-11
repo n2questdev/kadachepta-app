@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import { IonicModule } from '@ionic/angular';
 import { LibraryPage } from './library.page';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { LibraryPage } from './library.page';
     LibraryPage,
   ],
   imports: [
-    IonicPageModule.forChild(LibraryPage),
+    IonicModule.forChild(LibraryPage),
   ],
 })
 export class LibraryPageModule {}

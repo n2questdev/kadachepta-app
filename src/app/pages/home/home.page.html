@@ -1,25 +1,32 @@
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Home</ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-row *ngIf="!loadedPlaylists" align-items-center>
     <ion-col text-center>
-      <br>
+      <br />
       <ion-spinner color="spotifyPrimary"></ion-spinner>
     </ion-col>
   </ion-row>
 
   <div *ngIf="loadedPlaylists">
     <div *ngFor="let playlistGroup of playlistGroups">
-      <div class="item-title">{{playlistGroup.name}}</div>
+      <div class="item-title">{{ playlistGroup.name }}</div>
 
       <ion-row>
         <ion-item no-lines>
           <ion-scroll scrollX="true" scroll-avatar>
-            <ion-col *ngFor="let playlist of playlistGroup.playlists" class="scroll-item" (click)="goToPlaylist(playlist)">
+            <ion-col
+              *ngFor="let playlist of playlistGroup.playlists"
+              class="scroll-item"
+              (click)="goToPlaylist(playlist)"
+            >
               <img src="{{ playlist.picture }}" />
               <div>{{ playlist.name }}</div>
             </ion-col>
