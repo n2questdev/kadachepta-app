@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController, Platform } from '@ionic/angular';
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { TwitterConnect } from '@ionic-native/twitter-connect/ngx';
+import * as firebase from 'firebase/app';
 
 
 @Injectable()
@@ -171,13 +175,13 @@ export class AuthService {
       .app()
       .auth()
       .sendPasswordResetEmail(email)
-      .then(s => {
-        let alert = this.alertCtrl.create({
-          title: 'Password Reset',
-          subTitle: 'Check your inbox to reset your password',
+      .then(async s => {
+        const alert = await this.alertCtrl.create({
+          header: 'Password Reset',
+          subHeader: 'Check your inbox to reset your password',
           buttons: ['Dismiss']
         });
-        alert.present();
+        await alert.present();
       })
       .catch(error => {
         throw error;

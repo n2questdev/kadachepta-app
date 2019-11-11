@@ -4,23 +4,24 @@ import { IonicModule } from '@ionic/angular';
 import { AppComponent } from './app.component';
 
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
-import firebase from 'firebase';
-import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+import * as firebase from 'firebase/app';
+import { environment } from '../environments/environment';
 
-import { Facebook } from '@ionic-native/facebook';
-import { GooglePlus } from '@ionic-native/google-plus';
-import { TwitterConnect } from '@ionic-native/twitter-connect';
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { TwitterConnect } from '@ionic-native/twitter-connect/ngx';
 import {
   IonicAudioModule,
   defaultAudioProviderFactory
 } from './components/ionic-audio';
 import { ComponentsFooterPlayerComponent } from './components/components-footer-player/components-footer-player';
-import { MusicControls } from '@ionic-native/music-controls';
-import { BackgroundMode } from '@ionic-native/background-mode';
+import { MusicControls } from '@ionic-native/music-controls/ngx';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { HomePage } from './pages/home/home.page';
 import { BrowsePage } from './pages/browse/browse.page';
 import { LibraryPage } from './pages/library/library.page';
@@ -38,28 +39,14 @@ import { LoginDetailsPage } from './pages/login-details/login-details.page';
 import { AuthService } from './services/AuthService';
 import { FirestoreService } from './services/FirestoreService';
 import { AudioService } from './services/AudioService';
-import { SearchPageModule } from './pages/search/search.page';
-
-// Initialize Firebase
-const firebaseConfig = {
-    apiKey: 'firebase_api_key_here',
-    authDomain: 'kadacheptaadmin.firebaseapp.com',
-    databaseURL: 'https://kadacheptaadmin.firebaseio.com',
-    projectId: 'kadacheptaadmin',
-    storageBucket: 'kadacheptaadmin.appspot.com',
-    messagingSenderId: '874870342380',
-    appId: '1:874870342380:web:da6fb393c0a55cd96d9bc9',
-    measurementId: 'G-GDTSXCB5YY'
-  };
-
-firebase.initializeApp(firebaseConfig);
+import { SearchPage } from './pages/search/search.page';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePage,
     BrowsePage,
-    SearchPageModule,
+    SearchPage,
     LibraryPage,
     TabsPage,
     LoginPage,
@@ -77,7 +64,7 @@ firebase.initializeApp(firebaseConfig);
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     IonicAudioModule.forRoot(defaultAudioProviderFactory)
   ],
@@ -110,7 +97,7 @@ firebase.initializeApp(firebaseConfig);
     GooglePlus,
     TwitterConnect,
     MusicControls,
-    BackgroundMode  
+    BackgroundMode
   ]
 })
-export class AppModule {}
+export class AppModule { }

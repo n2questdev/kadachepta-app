@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AudioProvider } from '../components/ionic-audio';
-import { MusicControls } from '@ionic-native/music-controls';
+import { MusicControls } from '@ionic-native/music-controls/ngx';
 import { Platform, ToastController, Events } from '@ionic/angular';
 
 @Injectable()
@@ -137,19 +137,19 @@ export class AudioService {
     }
   }
 
-  shuffle() {
+  async shuffle() {
     this.isShuffle = !this.isShuffle;
 
-    const toast = this.toastCtrl.create({
+    const toast = await this.toastCtrl.create({
       message: 'Shuffle ' + (this.isShuffle ? 'ON' : 'OFF'),
       duration: 1000,
       position: 'bottom'
     });
 
-    toast.present();
+    return await toast.present();
   }
 
-  repeat() {
+  async repeat() {
     let repeatState = '';
 
     switch (this.isRepeat) {
@@ -169,13 +169,13 @@ export class AudioService {
         break;
     }
 
-    const toast = this.toastCtrl.create({
+    const toast = await this.toastCtrl.create({
       message: 'Repeat ' + repeatState,
       duration: 1000,
       position: 'bottom'
     });
 
-    toast.present();
+    return await toast.present();
   }
 
   seekTo() {
